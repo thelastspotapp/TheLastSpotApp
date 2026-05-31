@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #082743;
+  --yellow: #FFD33D;
+  --blue: #1697D6;
+  --orange: #FF8A3D;
+  --cream: #FFF8EB;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--cream); color: var(--navy); }
+button { cursor: pointer; }
+
+
+/* V2 visual safety layer */
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
