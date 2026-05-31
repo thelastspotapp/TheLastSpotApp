@@ -348,20 +348,22 @@ function Nav() {
       title: "Explore",
       items: [
         ["Find Parking", "#top"],
-        ["Reserve Now", "#reserve-now"],
-        ["Session", "#parking-session"],
-        ["Live Sessions", "#live-session-integration"],
-        ["Live Data", "#real-live-activity"],
+        ["Reserve Spot", "#reserve-now"],
         ["Checkout", "#smart-checkout"],
-        ["Live Sessions", "#live-session-integration"],
-        ["Session", "#parking-session"],
       ],
     },
     {
-      title: "Platform",
+      title: "Host",
       items: [
-        ["Live Map", "#interactive-map"],
-        ["Host Portal", "#host-onboarding"],
+        ["Host Center", "#host-center"],
+      ],
+    },
+    {
+      title: "Account",
+      items: [
+        ["My Session", "#parking-session"],
+        ["Parking History", "#parking-session"],
+        ["Profile", "#top"],
       ],
     },
   ];
