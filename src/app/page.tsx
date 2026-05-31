@@ -143,6 +143,92 @@ const fallbackSpots: ParkingSpot[] = [
 const events = ["Night in Venice", "Spring Block Party", "First Night", "Cape May Wedding Weekend"];
 
 
+
+function ShorePriceAIPanel() {
+  return (
+    <section id="shoreprice-ai" className="mx-auto max-w-7xl px-5 py-8">
+      <div className="rounded-[2.5rem] border-4 border-[#082743] bg-[#FFF3D6] p-6 shadow-[8px_8px_0_#082743] md:p-8">
+        <div className="grid gap-6 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+          <div>
+            <p className="text-sm font-black uppercase tracking-wide text-[#1697D6]">
+              Host Pricing Intelligence
+            </p>
+
+            <h2 className="mt-2 text-4xl font-black text-[#082743] md:text-5xl">
+              ShorePrice™ AI
+            </h2>
+
+            <p className="mt-4 max-w-3xl font-bold text-slate-700">
+              Smart pricing recommendations for shore parking hosts based on
+              demand, location, duration, vehicle fit, events, and occupancy.
+            </p>
+
+            <div className="mt-6 grid gap-3 md:grid-cols-3">
+              {[
+                ["Demand", "Live area pressure"],
+                ["Duration", "1 hr to full day"],
+                ["Events", "Weekend + venue boosts"],
+              ].map(([title, desc]) => (
+                <div key={title} className="rounded-2xl border-4 border-[#082743] bg-white p-4 shadow">
+                  <p className="text-xl font-black text-[#082743]">
+                    {title}
+                  </p>
+                  <p className="mt-1 text-sm font-bold text-slate-600">
+                    {desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-5 shadow-[6px_6px_0_#082743]">
+            <p className="text-sm font-black uppercase tracking-wide text-[#1697D6]">
+              Example Host Recommendation
+            </p>
+
+            <div className="mt-5 grid grid-cols-2 gap-4">
+              <div className="rounded-2xl bg-[#F4F7FB] p-4 text-center">
+                <p className="text-xs font-black uppercase text-slate-500">
+                  Current
+                </p>
+                <p className="text-4xl font-black text-[#082743]">
+                  $28
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-[#FFD33D] p-4 text-center">
+                <p className="text-xs font-black uppercase text-[#082743]">
+                  Suggested
+                </p>
+                <p className="text-4xl font-black text-[#082743]">
+                  $34
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-2xl border-4 border-[#082743] bg-[#EAF7F6] p-4">
+              <p className="text-sm font-black uppercase text-[#1697D6]">
+                Why
+              </p>
+              <p className="mt-2 font-bold text-slate-700">
+                High boardwalk demand, strong ShoreScore™, 2-hour booking window,
+                and weekend beach traffic support a higher host rate.
+              </p>
+            </div>
+
+            <a
+              href="#host-center"
+              className="mt-5 block rounded-full border-4 border-[#082743] bg-[#082743] px-6 py-4 text-center font-black uppercase text-white shadow-[4px_4px_0_#FFD33D]"
+            >
+              Open Host Center
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function UnifiedParkingHero() {
   return (
     <section className="mx-auto max-w-7xl px-5 pt-6 pb-10">
@@ -5871,6 +5957,8 @@ async function saveProfile() {
       <DashboardHubPanel />
 
       <InteractiveParkingMapPanel />
+
+      <ShorePriceAIPanel />
 
       <InstantReservationFlowPanel />
 
