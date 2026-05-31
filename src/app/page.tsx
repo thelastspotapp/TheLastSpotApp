@@ -551,7 +551,7 @@ function SpotModal({ spot, onClose }: { spot: ParkingSpot; onClose: () => void }
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
-  const [rate, setRate] = useState("daily");
+  const [rate, setRate] = useState("2_hours");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   async function submitRequest() {
@@ -565,7 +565,7 @@ function SpotModal({ spot, onClose }: { spot: ParkingSpot; onClose: () => void }
         customer_name: name,
         customer_email: email,
         requested_date: date,
-        requested_rate: rate,
+        requested_duration: rate,
         status: "pending",
       });
 
@@ -711,7 +711,7 @@ function SpotModal({ spot, onClose }: { spot: ParkingSpot; onClose: () => void }
 
               <div className="mt-4 rounded-2xl border-4 border-[#082743] bg-white p-4">
                 <h3 className="text-xl font-black text-[#082743]">
-                  Request this spot
+                  Reserve this spot
                 </h3>
 
                 <div className="mt-3 grid gap-3">
@@ -741,10 +741,12 @@ function SpotModal({ spot, onClose }: { spot: ParkingSpot; onClose: () => void }
                     onChange={(e) => setRate(e.target.value)}
                     className="rounded-xl border-2 border-[#082743] p-3 font-bold"
                   >
-                    <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                    <option value="event">Event</option>
+                    <option value="1_hour">1 hour</option>
+                    <option value="2_hours">2 hours</option>
+                    <option value="4_hours">4 hours</option>
+                    <option value="6_hours">6 hours</option>
+                    <option value="full_day">Full day</option>
+                    <option value="event">Event parking</option>
                   </select>
                 </div>
 
