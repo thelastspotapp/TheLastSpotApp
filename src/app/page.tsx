@@ -945,18 +945,18 @@ function MobileMenuDrawer({ open, onClose }: { open: boolean; onClose: () => voi
   const links = [
     ["Find Parking", "#find"],
         ["Dashboard Hub", "#dashboard-hub"],
-        ["Trust Signals", "#trust-signals"],
-        ["AI Assistant", "#ai-assistant"],
+        ["", "#trust-signals"],
+        ["", "#ai-assistant"],
         ["Live Map", "#interactive-map"],
         ["Live Activity", "#live-activity"],
     ["List Your Spot", "#host"],
     ["Checkout", "#feature-vault"],
     ["Messaging", "#feature-vault"],
-    ["Host Analytics", "#feature-vault"],
-    ["Revenue", "#feature-vault"],
+    ["", "#feature-vault"],
+    ["", "#feature-vault"],
     ["Heatmaps", "#feature-vault"],
-    ["Events AI", "#feature-vault"],
-    ["AI Engine", "#feature-vault"],
+    ["", "#feature-vault"],
+    ["", "#feature-vault"],
     ["Admin", "#admin"],
   ];
 
@@ -1415,7 +1415,7 @@ function SmartTrustSignalsPanel() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-black uppercase text-[#1697D6]">Phase 39</p>
-            <h2 className="text-3xl md:text-5xl font-black text-[#082743]">Smart Notifications + Trust Signals</h2>
+            <h2 className="text-3xl md:text-5xl font-black text-[#082743]">Smart Notifications + </h2>
             <p className="mt-4 max-w-3xl font-bold text-slate-700">
               The Last Spot now reinforces marketplace confidence using smart alerts,
               verified-host indicators, demand urgency, and operational trust signals.
@@ -1439,7 +1439,7 @@ function SmartTrustSignalsPanel() {
           </div>
 
           <div className="rounded-[2rem] border-4 border-[#082743] bg-[#FFF3D6] p-6">
-            <p className="text-3xl font-black text-[#082743]">Marketplace Trust Signals</p>
+            <p className="text-3xl font-black text-[#082743]">Marketplace </p>
             <div className="mt-5 grid gap-4">
               {trustSignals.map((signal) => (
                 <div key={signal.title} className="rounded-2xl border-4 border-[#082743] bg-white p-4 shadow">
@@ -2590,7 +2590,7 @@ function UnifiedHostEarningsPanel() {
 
           <div className="mt-8 rounded-[2rem] border-4 border-[#082743] bg-[#1697D6] p-5 text-white">
             <p className="text-xl font-black">
-              AI Revenue Optimization
+              AI  Optimization
             </p>
 
             <p className="mt-3 font-bold text-slate-100">
@@ -2619,8 +2619,8 @@ function CompactFeatureVault() {
     {
       title: "Marketplace",
       items: [
-        "Host Analytics",
-        "Revenue Engine",
+        "",
+        " Engine",
         "Stripe Checkout",
         "Owner Dashboard",
       ],
@@ -3435,7 +3435,7 @@ function HostAnalyticsDashboardPanel({
   spots: ParkingSpot[];
 }) {
   const activeSpots = spots.length;
-  const projectedRevenue = activeSpots * 420;
+  const projected = activeSpots * 420;
   const occupancy = Math.min(96, 55 + activeSpots * 4);
 
   return (
@@ -3460,11 +3460,11 @@ function HostAnalyticsDashboardPanel({
 
           <div className="rounded-3xl border-4 border-[#082743] bg-[#FFD33D] p-6 shadow">
             <p className="text-xs font-black uppercase text-[#082743]">
-              Projected Monthly Revenue
+              Projected Monthly 
             </p>
 
             <p className="mt-2 text-3xl md:text-5xl font-black text-[#082743]">
-              ${projectedRevenue}
+              ${projected}
             </p>
           </div>
         </div>
@@ -3515,13 +3515,13 @@ function HostAnalyticsDashboardPanel({
   );
 }
 
-function StripeRevenueEnginePanel({
+function StripeEnginePanel({
   spots,
 }: {
   spots: ParkingSpot[];
 }) {
   const premium = spots.filter((spot) => spot.surge_active).length;
-  const projectedRevenue = premium * 240 + spots.length * 38;
+  const projected = premium * 240 + spots.length * 38;
 
   return (
     <section id="stripe-revenue" className="mx-auto max-w-6xl px-5 py-10">
@@ -3533,7 +3533,7 @@ function StripeRevenueEnginePanel({
             </p>
 
             <h2 className="text-3xl md:text-5xl font-black text-[#082743]">
-              Stripe Revenue Engine
+              Stripe  Engine
             </h2>
 
             <p className="mt-4 max-w-3xl font-bold text-slate-700">
@@ -3545,11 +3545,11 @@ function StripeRevenueEnginePanel({
 
           <div className="rounded-3xl border-4 border-[#082743] bg-[#FFD33D] p-6 shadow">
             <p className="text-xs font-black uppercase text-[#082743]">
-              Projected Marketplace Revenue
+              Projected Marketplace 
             </p>
 
             <p className="mt-2 text-3xl md:text-5xl font-black text-[#082743]">
-              ${projectedRevenue}
+              ${projected}
             </p>
           </div>
         </div>
@@ -3559,7 +3559,7 @@ function StripeRevenueEnginePanel({
             "Stripe Checkout",
             "Host Payouts",
             "Platform Fees",
-            "Revenue Analytics",
+            " Analytics",
           ].map((item) => (
             <div
               key={item}
@@ -4037,7 +4037,7 @@ function DynamicPricingEnginePanel({
             </div>
 
             <div className="rounded-3xl bg-[#F4F4F4] p-6">
-              <p className="text-2xl font-black">Marketplace Revenue Intelligence</p>
+              <p className="text-2xl font-black">Marketplace  Intelligence</p>
 
               <div className="mt-4 grid gap-4 md:grid-cols-2">
                 <div className="rounded-2xl bg-white p-4 shadow">
@@ -4072,7 +4072,7 @@ function DynamicPricingEnginePanel({
 
                 <div className="rounded-2xl bg-white p-4 shadow">
                   <p className="text-sm font-black uppercase">
-                    Revenue AI
+                     AI
                   </p>
 
                   <p className="mt-2 text-4xl font-black">
@@ -4730,13 +4730,13 @@ function PaymentsInfrastructurePanel({
   const paidBookings = bookings.filter((b) => b.payment_status === "paid");
   const depositDue = bookings.filter((b) => b.payment_status === "deposit_due");
 
-  const grossRevenue = paidBookings.reduce(
+  const gross = paidBookings.reduce(
     (sum, booking) => sum + Number(booking.spot_price || 0),
     0
   );
 
-  const estimatedPlatformRevenue = Math.round(grossRevenue * 0.15);
-  const estimatedHostPayouts = grossRevenue - estimatedPlatformRevenue;
+  const estimatedPlatform = Math.round(gross * 0.15);
+  const estimatedHostPayouts = gross - estimatedPlatform;
 
   return (
     <section id="payments" className="mx-auto max-w-6xl px-5 py-10">
@@ -4755,10 +4755,10 @@ function PaymentsInfrastructurePanel({
 
           <div className="rounded-3xl bg-[#082743] p-6 text-white shadow-xl">
             <p className="text-sm uppercase font-black text-[#FFD33D]">
-              Marketplace Revenue
+              Marketplace 
             </p>
             <p className="mt-2 text-3xl md:text-5xl font-black">
-              ${grossRevenue}
+              ${gross}
             </p>
           </div>
         </div>
@@ -4775,9 +4775,9 @@ function PaymentsInfrastructurePanel({
           </div>
 
           <div className="rounded-3xl bg-[#FFF3D6] p-5">
-            <p className="text-sm font-black uppercase">Platform Revenue</p>
+            <p className="text-sm font-black uppercase">Platform </p>
             <p className="mt-2 text-4xl font-black">
-              ${estimatedPlatformRevenue}
+              ${estimatedPlatform}
             </p>
           </div>
 
@@ -5203,7 +5203,7 @@ function GrowthRoadmapPanel() {
     <section id="growth-stack" className="mx-auto max-w-6xl px-5 py-10">
       <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-6 shadow-[8px_8px_0_#082743]">
         <p className="text-sm font-black uppercase text-[#1697D6]">V11 Growth Stack</p>
-        <h2 className="text-4xl font-black">Revenue + Operations Layer</h2>
+        <h2 className="text-4xl font-black"> + Operations Layer</h2>
         <p className="mt-2 font-bold text-slate-600">
           These modules prepare The Last Spot for payments, QR passes, image verification, maps, dynamic pricing, and host earnings.
         </p>
@@ -6019,3 +6019,5 @@ async function saveProfile() {
     </main>
   );
 }
+
+/* The Last Spot™ - Less Searching. More Enjoying.™ */
