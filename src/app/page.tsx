@@ -400,7 +400,7 @@ function Nav() {
     ["🔍", "Find", "#interactive-map"],
     ["📍", "Reserve", "#reserve-now"],
     ["💳", "Checkout", "#smart-checkout"],
-    ["🏖️", "Spot", "#host-center"],
+    ["💰", "Earn", "#host-onboarding"],
   ];
 
   return (
