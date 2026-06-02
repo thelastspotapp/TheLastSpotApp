@@ -853,27 +853,7 @@ function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotCli
             <Logo small />
           </a>
 
-          <div className="absolute right-2 top-2 z-[999] flex flex-col items-end gap-2">
-            <button
-              type="button"
-              onClick={onMenuClick}
-              aria-label="Open menu"
-              className="flex items-center gap-1 rounded-full border-4 border-white bg-[#082743] px-3 py-2 text-[10px] font-black uppercase text-white shadow-[3px_3px_0_#082743] transition hover:bg-[#1697D6]"
-            >
-              <Menu className="h-4 w-4" />
-              Menu
-            </button>
-
-            <button
-              type="button"
-              onClick={onNotificationsClick}
-              aria-label="Open notifications"
-              className="flex items-center gap-1 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-3 py-2 text-[10px] font-black uppercase text-[#082743] shadow-[3px_3px_0_#082743] transition hover:bg-white"
-            >
-              <Bell className="h-4 w-4" />
-              Alerts
-            </button>
-          </div>
+          
         </div>
         <div className="-mt-5 rounded-t-[2rem] bg-[#FFF3D6] p-4 pt-5">
           <button
