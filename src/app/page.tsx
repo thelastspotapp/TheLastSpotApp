@@ -828,83 +828,30 @@ function SpotModal({ spot, onClose }: { spot: ParkingSpot; onClose: () => void }
   );
 }
 
-function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotClick, onMenuClick, onNotificationsClick }: {
-  spots: ParkingSpot[];
-  loading: boolean;
-  selectedTown: string;
-  setSelectedTown: (town: string) => void;
-  onSpotClick: (spot: ParkingSpot) => void;
-  onMenuClick: () => void;
-  onNotificationsClick: () => void;
-}) {
-  const visible = spots.filter((spot) => spot.town === selectedTown && spot.available !== false);
+function PhonePreview({ spots, selectedTown }: any) {
+  const visible = spots.filter((spot: any) => spot.town === selectedTown && spot.available !== false);
+
   return (
     <div className="mx-auto w-full max-w-[355px] rounded-[2.8rem] border-[10px] border-[#111827] bg-[#111827] shadow-2xl">
-      <div className="min-h-[620px] overflow-hidden rounded-[2rem] bg-[#FFF8EB]">
-        <div className="relative h-56 overflow-hidden">
+      <div className="min-h-[620px] overflow-hidden rounded-[2rem] bg-[#FFF8EB] p-4">
+        <div className="relative h-56 overflow-hidden rounded-2xl">
           <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" className="h-full w-full object-cover" alt="Beach" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#082743]/10 to-[#FFF8EB]" />
-          <div className="absolute left-1/2 top-[128px] z-10 -translate-x-1/2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-3 py-1 text-center text-[10px] font-black uppercase shadow-[3px_3px_0_#082743]">Clickable Live Listings</div>
-          <a
-            href="#top"
-            aria-label="Back to home"
-            className="absolute left-2 top-2 z-40 scale-75 rounded-2xl transition hover:scale-80"
-          >
+          <a href="#top" className="absolute left-2 top-2 z-10">
             <Logo small />
           </a>
+        </div>
 
-          </div>
-          </div>
-
-          <div className="grid gap-5">
-            <div className="rounded-[2rem] border-4 border-[#082743] bg-[#082743] p-6 text-white">
-              <p className="text-2xl font-black">
-                Smart Zone Intelligence
-              </p>
-
-              <div className="mt-5 grid gap-3">
-                {[
-                  "Fastest beach access",
-                  "Low traffic exits",
-                  "Family-friendly parking",
-                  "Event congestion alerts",
-                  "Premium availability",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl bg-white/10 p-3 font-black"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
+        <div className="mt-4 space-y-3">
+          {visible.slice(0,3).map((spot:any) => (
+            <div key={spot.id || spot.title} className="rounded-xl border-2 border-[#082743] bg-white p-3">
+              <div className="font-black">{spot.title}</div>
+              <div>${spot.price}</div>
             </div>
-
-            <div className="rounded-[2rem] border-4 border-[#082743] bg-[#FFD33D] p-6 text-[#082743]">
-              <p className="text-2xl font-black">
-                Real-Time Marketplace
-              </p>
-
-              <p className="mt-4 font-bold">
-                Dynamic parking activity updates help users instantly visualize
-                parking demand and availability across the shore.
-              </p>
-            </div>
-
-            <div className="rounded-[2rem] border-4 border-[#082743] bg-[#1697D6] p-6 text-white">
-              <p className="text-2xl font-black">
-                AI Navigation Layer
-              </p>
-
-              <p className="mt-4 font-bold text-slate-100">
-                Future-ready foundation for predictive parking routing,
-                intelligent recommendations, and smart city integrations.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
