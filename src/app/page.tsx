@@ -340,6 +340,44 @@ function Logo({ small = false }: { small?: boolean }) {
 
 
 
+
+function HostCenterCompactPanel() {
+  return (
+    <section id="host-center" className="mx-auto max-w-7xl px-5 py-8">
+      <div className="rounded-[2rem] border-4 border-[#082743] bg-[#FFF3D6] p-6 shadow-[8px_8px_0_#082743] md:p-8">
+        <div className="grid gap-6 lg:grid-cols-[1fr_0.75fr] lg:items-center">
+          <div>
+            <p className="text-sm font-black uppercase tracking-wide text-[#1697D6]">Host Center</p>
+            <h2 className="mt-2 text-4xl font-black text-[#082743]">Turn Your Spot Into Income</h2>
+            <p className="mt-3 max-w-2xl font-bold text-slate-700">
+              List your driveway, set availability, and use ShorePrice™ AI to make smarter pricing decisions during beach weekends and events.
+            </p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <a href="#host" className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
+                List My Spot
+              </a>
+              <a href="#shoreprice-ai" className="rounded-full border-4 border-[#082743] bg-white px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
+                ShorePrice™ AI
+              </a>
+            </div>
+          </div>
+          <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-5 shadow">
+            <p className="text-xs font-black uppercase tracking-wide text-[#1697D6]">Host Snapshot</p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {[["Listings", "Manage spots"], ["Bookings", "Track stays"], ["Earnings", "See revenue"], ["Pricing", "Optimize rates"]].map(([title, desc]) => (
+                <div key={title} className="rounded-2xl bg-[#FFF3D6] p-4">
+                  <p className="font-black text-[#082743]">{title}</p>
+                  <p className="text-xs font-bold text-slate-600">{desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Nav() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
 
@@ -347,32 +385,22 @@ function Nav() {
     {
       title: "Explore",
       items: [
-        ["Find Parking", "#top"],
+        ["Find Parking", "#interactive-map"],
         ["Reserve Spot", "#reserve-now"],
         ["Checkout", "#smart-checkout"],
       ],
     },
     {
       title: "Host",
-      items: [
-        ["Host Center", "#host-center"],
-      ],
-    },
-    {
-      title: "Account",
-      items: [
-        ["My Session", "#parking-session"],
-        ["Parking History", "#parking-session"],
-        ["Profile", "#top"],
-      ],
+      items: [["Host Center", "#host-center"]],
     },
   ];
 
   const mobileItems: [string, string, string][] = [
-    ["🏖️", "Find", "#top"],
-    ["⚡", "Reserve", "#reserve-now"],
+    ["🔍", "Find", "#interactive-map"],
+    ["📍", "Reserve", "#reserve-now"],
     ["💳", "Checkout", "#smart-checkout"],
-    ["📍", "Map", "#interactive-map"],
+    ["🏖️", "Spot", "#host-center"],
   ];
 
   return (
@@ -400,7 +428,7 @@ function Nav() {
                 </button>
 
                 {openGroup === group.title && (
-                  <div className="absolute left-0 top-full z-50 mt-3 min-w-[240px] rounded-3xl border-4 border-[#082743] bg-[#FFF8EB] p-3 shadow-[6px_6px_0_#082743]">
+                  <div className="absolute left-0 top-full z-[9999] mt-3 min-w-[240px] rounded-3xl border-4 border-[#082743] bg-[#FFF8EB] p-3 shadow-[6px_6px_0_#082743]">
                     <div className="grid gap-2">
                       {group.items.map(([label, href]) => (
                         <a
@@ -420,7 +448,7 @@ function Nav() {
           </div>
 
           <a
-            href="#find"
+            href="#interactive-map"
             className="ml-auto shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743]"
           >
             Get Started
@@ -437,8 +465,8 @@ function Nav() {
         />
       )}
 
-      <div className="relative z-20 border-t-4 border-[#082743] bg-[#FFF8EB] px-2 py-2 shadow-[0_-4px_0_#082743] md:hidden">
-        <div className="grid grid-cols-5 gap-1">
+      <div className="fixed bottom-0 left-0 right-0 z-50 border-t-4 border-[#082743] bg-[#FFF8EB] px-2 py-2 shadow-[0_-4px_0_#082743] md:hidden">
+        <div className="grid grid-cols-4 gap-1">
           {mobileItems.map(([icon, label, href]) => (
             <a
               key={label}
@@ -592,7 +620,7 @@ function SpotModal({ spot, onClose }: { spot: ParkingSpot; onClose: () => void }
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-[#082743]/80 backdrop-blur"
+      className="fixed inset-0 z-[9999] bg-[#082743]/80 backdrop-blur"
       role="dialog"
       aria-modal="true"
     >
@@ -820,12 +848,12 @@ function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotCli
           <a
             href="#top"
             aria-label="Back to home"
-            className="absolute left-2 top-2 z-40 scale-75 rounded-2xl transition"
+            className="absolute left-2 top-2 z-40 scale-75 rounded-2xl transition hover:scale-80"
           >
             <Logo small />
           </a>
 
-          <div className="absolute right-2 top-2 z-40 flex flex-col items-end gap-2">
+          <div className="absolute right-2 top-2 z-[999] flex flex-col items-end gap-2">
             <button
               type="button"
               onClick={onMenuClick}
@@ -915,27 +943,7 @@ function MobileQuickActions({
   onMenuClick: () => void;
   onNotificationsClick: () => void;
 }) {
-  return (
-    <div className="fixed right-3 top-[92px] z-50 flex gap-2 md:hidden">
-      <button
-        type="button"
-        onClick={onMenuClick}
-        aria-label="Open mobile menu"
-        className="rounded-full border-4 border-[#082743] bg-white p-4 text-[#082743] shadow-[3px_3px_0_#082743]"
-      >
-        <Menu className="h-5 w-5" />
-      </button>
-
-      <button
-        type="button"
-        onClick={onNotificationsClick}
-        aria-label="Open notifications"
-        className="rounded-full border-4 border-[#082743] bg-[#FFD33D] p-4 text-[#082743] shadow-[3px_3px_0_#082743]"
-      >
-        <Bell className="h-5 w-5" />
-      </button>
-    </div>
-  );
+  return null;
 }
 
 
@@ -943,25 +951,17 @@ function MobileMenuDrawer({ open, onClose }: { open: boolean; onClose: () => voi
   if (!open) return null;
 
   const links = [
-    ["Find Parking", "#find"],
-        ["Dashboard Hub", "#dashboard-hub"],
-        ["Trust Signals", "#trust-signals"],
-        ["AI Assistant", "#ai-assistant"],
-        ["Live Map", "#interactive-map"],
-        ["Live Activity", "#live-activity"],
-    ["List Your Spot", "#host"],
-    ["Checkout", "#feature-vault"],
-    ["Messaging", "#feature-vault"],
-    ["Host Analytics", "#feature-vault"],
-    ["Revenue", "#feature-vault"],
-    ["Heatmaps", "#feature-vault"],
-    ["Events AI", "#feature-vault"],
-    ["AI Engine", "#feature-vault"],
-    ["Admin", "#admin"],
+    ["Find Parking", "#interactive-map"],
+    ["Reserve Spot", "#reserve-now"],
+    ["Checkout", "#smart-checkout"],
+    ["Host Center", "#host-center"],
+    ["My Session", "#smart-checkout"],
+    ["Parking History", "#smart-checkout"],
+    ["Profile", "#top"],
   ];
 
   return (
-    <div onClick={onClose} className="fixed inset-0 z-40 bg-black/60 p-3">
+    <div onClick={onClose} className="fixed inset-0 z-[999] bg-black/60 p-3">
       <div onClick={(e) => e.stopPropagation()} className="mx-auto max-h-[calc(100dvh-24px)] w-full max-w-sm overflow-hidden rounded-[2rem] border-4 border-[#082743] bg-white shadow-2xl">
         <div className="flex items-center justify-between border-b-4 border-[#082743] bg-[#FFF3D6] p-4">
           <p className="text-3xl font-black text-[#082743]">Menu</p>
@@ -1026,14 +1026,14 @@ function NotificationsDrawer({ open, onClose }: { open: boolean; onClose: () => 
 function LiveActivityEnginePanel() {
   
   const activities = [
-    "🔥 3 premium spots just opened near Ocean City Boardwalk",
-    "⚠️ Boardwalk inventory almost full for tonight",
-    "🚗 5 new parking spots available near Gillian’s",
-    "✅ Beachfront parking spot just booked",
-    "📈 Demand rising near Ocean City Music Pier",
-    "🏖️ Family-friendly parking available near 12th Street",
-    "⏳ Premium event parking filling quickly",
-    "🌊 Low-traffic parking available near north-end beaches",
+    "🚨 Boardwalk 92% Full",
+    "⚡ 3 Spots Left • Downtown",
+    "♻️ Spot Available Again • 11th Street",
+    "🏖️ Beach Access Parking Available",
+    "🔥 Event Parking Filling Fast",
+    "📍 Premium Spot Available • 12th Street",
+    "🎵 Event Parking Nearly Full",
+    "🚗 North End Parking Available",
   ];
 
 
@@ -5934,7 +5934,7 @@ async function saveProfile() {
       {selectedSpot && <SpotModal spot={selectedSpot} onClose={() => setSelectedSpot(null)} />}
       {reviewBooking && <ReviewModal booking={reviewBooking} onClose={() => setReviewBooking(null)} onSaved={loadReviews} />}
       {adminMessage && (
-        <div className="fixed bottom-5 left-1/2 z-[120] -translate-x-1/2 rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-5 py-3 text-center font-black text-[#082743] shadow-[5px_5px_0_#082743]">
+        <div className="mx-auto my-4 max-w-md rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-5 py-3 text-center font-black text-[#082743] shadow-[5px_5px_0_#082743]">
           {adminMessage}
         </div>
       )}
@@ -5945,77 +5945,32 @@ async function saveProfile() {
           <div className="space-y-7 text-center lg:text-left">
             <div className="mx-auto inline-flex rounded-[2rem] border-[5px] border-[#082743] bg-gradient-to-br from-[#1697D6] to-[#0C6FA3] p-6 shadow-[10px_10px_0_#082743] lg:mx-0"><Logo /></div>
             <div className="inline-flex items-center gap-2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-2 shadow-[5px_5px_0_#082743]"><span>🏖️</span><span className="font-black uppercase">{usingLiveData ? "Live database connected" : "Demo fallback mode"}</span></div>
-            <h1 className="text-3xl md:text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl">Park Once. <span className="text-[#1697D6]">Enjoy The Shore.</span></h1>
-            <p className="max-w-2xl text-xl font-black uppercase text-[#F46036] md:text-2xl">Verified shore parking for beach days, events, weddings, and weekends.</p>
-            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#find" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="#host-portal" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
+            <h1 className="text-3xl md:text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl">Find Your Spot. <span className="text-[#1697D6]">Enjoy The Shore.</span></h1>
+            <p className="max-w-2xl text-xl font-black uppercase text-[#F46036] md:text-2xl">Less Searching. More Enjoying.™</p>
+            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="#host-center" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
           </div>
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}><PhonePreview spots={spots} loading={loading} selectedTown={selectedTown} setSelectedTown={setSelectedTown} onSpotClick={setSelectedSpot} onMenuClick={() => setMobileMenuOpen(true)} onNotificationsClick={() => setNotificationsOpen(true)} /></motion.div>
         </div>
       </section>
-      <section className="mx-auto grid max-w-6xl gap-4 px-5 py-8 md:grid-cols-4"><Stat value={String(oceanCityCount)} label="Ocean City spots" /><Stat value={String(capeMayCount)} label="Cape May spots" /><Stat value="12–18%" label="Booking fee model" /><Stat value="QR" label="Verified check-in" /></section>
-      <section id="find" className="mx-auto max-w-6xl px-5 py-10"><div className="rounded-[2rem] border-4 border-[#082743] bg-white p-6 shadow-[8px_8px_0_#082743]"><h2 className="text-4xl font-black">Built for shore days.</h2><div className="mt-6 grid gap-4 md:grid-cols-3"><div className="rounded-3xl bg-white p-6 shadow-md"><ShieldCheck className="h-8 w-8 text-[#F5B700]" /><h3 className="mt-4 text-xl font-black">Verified parking</h3><p className="mt-2 font-bold text-slate-600">Hosts are reviewed, spots use real photos, and QR check-ins create trust.</p></div><div className="rounded-3xl bg-white p-6 shadow-md"><CalendarDays className="h-8 w-8 text-[#F5B700]" /><h3 className="mt-4 text-xl font-black">Daily, weekly, monthly</h3><p className="mt-2 font-bold text-slate-600">Flexible pricing built for beach days, vacation weeks, and seasonal stays.</p></div><div className="rounded-3xl bg-white p-6 shadow-md"><Flame className="h-8 w-8 text-[#F5B700]" /><h3 className="mt-4 text-xl font-black">Event Mode</h3><p className="mt-2 font-bold text-slate-600">Night in Venice, Block Parties, First Night, weddings, and surge weekends.</p></div></div></div></section>
-      <section id="host" className="mx-auto max-w-6xl px-5 py-10"><div className="grid gap-6 md:grid-cols-2"><div className="rounded-[2rem] bg-[#082743] p-8 text-white shadow-xl"><p className="font-black uppercase text-[#FFD33D]">For Homeowners</p><h2 className="mt-2 text-4xl font-black">Turn your driveway into summer income.</h2><p className="mt-4 font-bold text-white/80">Control your calendar, set your rates, approve availability, and track gross/net earnings from the owner dashboard.</p></div><div className="rounded-[2rem] bg-[#FFD33D] p-8 shadow-[8px_8px_0_#082743]"><p className="font-black uppercase">Owner dashboard includes</p>{["Gross/net earnings","Hot times + smart pricing","QR scan logs","Maintenance referrals","Verification status"].map((item)=><p key={item} className="mt-3 flex items-center gap-2 font-black"><CheckCircle2 /> {item}</p>)}</div></div></section>
-      <section id="events" className="mx-auto max-w-6xl px-5 py-10"><h2 className="text-4xl font-black">Event-driven demand.</h2><div className="mt-5 grid gap-4 md:grid-cols-4">{events.map((event)=><div key={event} className="rounded-3xl bg-white p-5 shadow-md"><p className="text-xs font-black uppercase text-[#1697D6]">Ocean City + Cape May</p><p className="mt-1 text-xl font-black">{event}</p><p className="mt-2 rounded-full bg-[#FFD33D] px-3 py-2 text-center text-xs font-black">High Demand</p></div>)}</div></section>
-      <AuthDashboard user={loggedInUser} onSignOut={signOutDemo} onDemoLogin={signInDemo} />
 
-      <DashboardHubPanel />
+      <LiveActivityEnginePanel />
 
       <InteractiveParkingMapPanel />
-
-      <ShorePriceAIPanel />
 
       <InstantReservationFlowPanel />
 
       <SmartCheckoutExperiencePanel />
 
-      <UnifiedIntelligenceLayer />
+      <HostCenterCompactPanel />
 
-      <LiveActivityEnginePanel />
+      <ShorePriceAIPanel />
 
-      
-      <section className="mx-auto max-w-7xl px-5 py-10">
-        <div className="grid gap-6 lg:grid-cols-3">
-          <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-6 shadow-[6px_6px_0_#082743]">
-            <p className="text-2xl font-black">AI Parking Guidance</p>
-            <p className="mt-3 font-bold text-slate-700">
-              Fast recommendations for cheapest parking, beach access, and quickest exits.
-            </p>
-          </div>
-
-          <div className="rounded-[2rem] border-4 border-[#082743] bg-[#FFD33D] p-6 shadow-[6px_6px_0_#082743]">
-            <p className="text-2xl font-black">Verified Marketplace</p>
-            <p className="mt-3 font-bold">
-              Trusted hosts, real-time inventory, and live parking activity across the shore.
-            </p>
-          </div>
-
-          <div className="rounded-[2rem] border-4 border-[#082743] bg-[#1697D6] p-6 text-white shadow-[6px_6px_0_#082743]">
-            <p className="text-2xl font-black">Live Demand Intelligence</p>
-            <p className="mt-3 font-bold text-slate-100">
-              Dynamic parking pressure and event demand updates in real time.
-            </p>
-          </div>
+      <section className="mx-auto max-w-7xl px-5 py-8 pb-28">
+        <div className="rounded-[2rem] border-4 border-[#082743] bg-[#082743] p-6 text-center text-white shadow-[8px_8px_0_#082743]">
+          <p className="text-3xl font-black">The Last Spot™</p>
+          <p className="mt-2 text-lg font-black text-[#FFD33D]">Less Searching. More Enjoying.™</p>
         </div>
       </section>
-
-
-      <UnifiedHostEarningsPanel />
-
-      <HostOnboardingDashboardPanel />
-
-      <GrowthRoadmapPanel />
-
-      <MapPreviewPanel />
-
-      <HostEarningsPanel bookings={bookings} />
-
-      <HostPortal />
-
-      <HostSubmissionsDashboard submissions={hostSubmissions} loading={hostSubmissionsLoading} onRefresh={loadHostSubmissions} onUpdateHostStatus={updateHostSubmissionStatus} />
-
-      <AdminDashboard bookings={bookings} loading={bookingsLoading} onRefresh={loadBookings} onUpdateBookingStatus={updateBookingStatus} onMarkPaid={markBookingPaid} onReviewBooking={setReviewBooking} />
-
-      <section id="faq" className="mx-auto max-w-6xl px-5 py-10 pb-20"><div className="rounded-[2rem] border-4 border-[#082743] bg-white p-6 shadow-[8px_8px_0_#082743]"><h2 className="text-4xl font-black">FAQ</h2>{[["How are owners verified?","Ownership documentation, address review, photo verification, and admin approval."],["How do QR signs work?","Guests scan on arrival and departure so the owner and company know the spot was used."],["Where are you launching first?","Ocean City and Cape May, then coming-soon shore towns."],["Is this live booking yet?","This version reads parking spots from Supabase and adds booking request UI. Stripe is next."]].map(([q,a])=><div key={q} className="border-t py-4"><p className="font-black">{q}</p><p className="mt-1 font-bold text-slate-600">{a}</p></div>)}</div></section>
     </main>
   );
 }
