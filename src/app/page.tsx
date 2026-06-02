@@ -330,7 +330,7 @@ function Logo({ small = false }: { small?: boolean }) {
       <div className="leading-[0.86]">
         <p className={`${small ? "text-xs" : "text-sm"} font-black italic text-white drop-shadow-[2px_2px_0_#082743]`}>The</p>
         <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-white drop-shadow-[3px_3px_0_#082743]`}>Last</p>
-        <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-[#FFD33D] drop-shadow-[3px_3px_0_#082743]`}>Earn</p>
+        <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-[#FFD33D] drop-shadow-[3px_3px_0_#082743]`}>Spot</p>
       </div>
     </div>
   );
@@ -400,7 +400,7 @@ function Nav() {
     ["🔍", "Find", "#interactive-map"],
     ["📍", "Reserve", "#reserve-now"],
     ["💳", "Checkout", "#smart-checkout"],
-    ["🏖️", "Earn", "#host-center"],
+    ["🏖️", "Spot", "#host-center"],
   ];
 
   return (
@@ -828,30 +828,449 @@ function SpotModal({ spot, onClose }: { spot: ParkingSpot; onClose: () => void }
   );
 }
 
-function PhonePreview({ spots, selectedTown }: any) {
-  const visible = spots.filter((spot: any) => spot.town === selectedTown && spot.available !== false);
-
+function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotClick, onMenuClick, onNotificationsClick }: {
+  spots: ParkingSpot[];
+  loading: boolean;
+  selectedTown: string;
+  setSelectedTown: (town: string) => void;
+  onSpotClick: (spot: ParkingSpot) => void;
+  onMenuClick: () => void;
+  onNotificationsClick: () => void;
+}) {
+  const visible = spots.filter((spot) => spot.town === selectedTown && spot.available !== false);
   return (
     <div className="mx-auto w-full max-w-[355px] rounded-[2.8rem] border-[10px] border-[#111827] bg-[#111827] shadow-2xl">
-      <div className="min-h-[620px] overflow-hidden rounded-[2rem] bg-[#FFF8EB] p-4">
-        <div className="relative h-56 overflow-hidden rounded-2xl">
+      <div className="min-h-[620px] overflow-hidden rounded-[2rem] bg-[#FFF8EB]">
+        <div className="relative h-56 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" className="h-full w-full object-cover" alt="Beach" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#082743]/10 to-[#FFF8EB]" />
-          <a href="#top" className="absolute left-2 top-2 z-10">
+          <div className="absolute left-1/2 top-[128px] z-10 -translate-x-1/2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-3 py-1 text-center text-[10px] font-black uppercase shadow-[3px_3px_0_#082743]">Clickable Live Listings</div>
+          <a
+            href="#top"
+            aria-label="Back to home"
+            className="absolute left-2 top-2 z-40 scale-75 rounded-2xl transition hover:scale-80"
+          >
             <Logo small />
           </a>
+
+          <div className="absolute right-2 top-2 z-[999] flex flex-col items-end gap-2">
+            <button
+              type="button"
+              onClick={onMenuClick}
+              aria-label="Open menu"
+              className="flex items-center gap-1 rounded-full border-4 border-white bg-[#082743] px-3 py-2 text-[10px] font-black uppercase text-white shadow-[3px_3px_0_#082743] transition hover:bg-[#1697D6]"
+            >
+              <Menu className="h-4 w-4" />
+              Menu
+            </button>
+
+            <button
+              type="button"
+              onClick={onNotificationsClick}
+              aria-label="Open notifications"
+              className="flex items-center gap-1 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-3 py-2 text-[10px] font-black uppercase text-[#082743] shadow-[3px_3px_0_#082743] transition hover:bg-white"
+            >
+              <Bell className="h-4 w-4" />
+              Alerts
+            </button>
+          </div>
+        </div>
+        <div className="-mt-5 rounded-t-[2rem] bg-[#FFF3D6] p-4 pt-5">
+          <button
+            type="button"
+            onClick={() => visible[0] && onSpotClick(visible[0])}
+            className="mb-3 w-full rotate-[-2deg] rounded-full border-4 border-[#082743] bg-[#FF8A3D] px-4 py-2 text-center font-black uppercase text-white shadow-[5px_5px_0_#082743] transition hover:scale-[1.02]"
+          >
+            Tap a spot to reserve.
+          </button>
+          <h2 className="text-center text-4xl font-black uppercase leading-none">Find your shore spot.</h2>
+          <p className="mt-2 text-center text-sm font-black text-[#1697D6]">Now using your live Supabase listings.</p>
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            {["Ocean City", "Cape May"].map((town) => (
+              <button key={town} onClick={() => setSelectedTown(town)} className={`rounded-2xl border-2 border-[#082743] px-3 py-3 text-left text-sm font-black shadow-[3px_3px_0_#082743] ${selectedTown === town ? "bg-[#FFD33D]" : "bg-white"}`}>
+                {town === "Ocean City" ? "🎡" : "🏠"} {town}
+              </button>
+            ))}
+          </div>
+          <div className="mt-4 space-y-3">
+            {loading && <div className="rounded-2xl bg-white p-4 text-center font-black shadow-md">Loading live spots...</div>}
+            {!loading && visible.length === 0 && <div className="rounded-2xl bg-white p-4 text-center font-black shadow-md">No live spots yet in {selectedTown}.</div>}
+            {!loading && visible.slice(0, 3).map((spot) => (
+              <button key={`${spot.id || spot.title}`} onClick={() => onSpotClick(spot)} className="flex w-full gap-3 rounded-2xl bg-white p-2 text-left shadow-md transition hover:scale-[1.01]">
+                <img src={spot.image_url || fallbackSpots[0].image_url!} className="h-20 w-20 rounded-xl object-cover" alt={spot.title} />
+                <div>
+                  <p className="font-black">{spot.title}</p>
+                  <p className="text-xs font-bold text-slate-500">{spot.town} • Tap to view</p>
+                  <div className="mt-1 flex flex-wrap gap-1">
+                    <p className="w-fit rounded-full bg-[#EAF7F6] px-2 py-1 text-[10px] font-black uppercase">{spot.vehicle_size || "Vehicle fit listed"}</p>
+                    {spot.verified_owner && <p className="w-fit rounded-full bg-[#FFD33D] px-2 py-1 text-[10px] font-black uppercase">Verified Owner</p>}
+                    <p className="w-fit rounded-full bg-white px-2 py-1 text-[10px] font-black uppercase shadow">Trust {spot.trust_score || 80}</p>
+                  </div>
+                  <p className="text-xl font-black">${spot.price}<span className="text-xs">/day</span></p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function MobileQuickActions({
+  onMenuClick,
+  onNotificationsClick,
+}: {
+  onMenuClick: () => void;
+  onNotificationsClick: () => void;
+}) {
+  return null;
+}
+
+
+function MobileMenuDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+
+  const links = [
+    ["Find Parking", "#interactive-map"],
+    ["Reserve Spot", "#reserve-now"],
+    ["Checkout", "#smart-checkout"],
+    ["Host Center", "#host-center"],
+    ["My Session", "#smart-checkout"],
+    ["Parking History", "#smart-checkout"],
+    ["Profile", "#top"],
+  ];
+
+  return (
+    <div onClick={onClose} className="fixed inset-0 z-[999] bg-black/60 p-3">
+      <div onClick={(e) => e.stopPropagation()} className="mx-auto max-h-[calc(100dvh-24px)] w-full max-w-sm overflow-hidden rounded-[2rem] border-4 border-[#082743] bg-white shadow-2xl">
+        <div className="flex items-center justify-between border-b-4 border-[#082743] bg-[#FFF3D6] p-4">
+          <p className="text-3xl font-black text-[#082743]">Menu</p>
+          <button type="button" onClick={onClose} aria-label="Close menu" className="rounded-full border-4 border-[#082743] bg-[#FF8A3D] px-4 py-2 font-black text-white shadow-[3px_3px_0_#082743]">
+            X
+          </button>
         </div>
 
-        <div className="mt-4 space-y-3">
-          {visible.slice(0,3).map((spot:any) => (
-            <div key={spot.id || spot.title} className="rounded-xl border-2 border-[#082743] bg-white p-3">
-              <div className="font-black">{spot.title}</div>
-              <div>${spot.price}</div>
+        <div className="grid max-h-[calc(100dvh-120px)] gap-3 overflow-y-auto p-4 pb-8">
+          {links.map(([label, href]) => (
+            <a key={label} href={href} onClick={onClose} className="rounded-2xl bg-[#FFF3D6] p-4 font-black text-[#082743] shadow">
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+function NotificationsDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+
+  const notifications = [
+    "New booking request received",
+    "Beach demand increasing this weekend",
+    "QR reservation successfully verified",
+    "AI pricing recommendation available",
+  ];
+
+  return (
+    <div onClick={onClose} className="fixed inset-0 z-[1000] bg-black/60 p-3">
+      <div onClick={(e) => e.stopPropagation()} className="mx-auto max-h-[calc(100dvh-24px)] w-full max-w-sm overflow-hidden rounded-[2rem] border-4 border-[#082743] bg-white shadow-2xl">
+        <div className="flex items-center justify-between border-b-4 border-[#082743] bg-[#FFF3D6] p-4">
+          <p className="text-2xl font-black text-[#082743]">Notifications</p>
+          <button type="button" onClick={onClose} aria-label="Close notifications" className="rounded-full border-4 border-[#082743] bg-[#FF8A3D] px-4 py-2 font-black text-white shadow-[3px_3px_0_#082743]">
+            X
+          </button>
+        </div>
+
+        <div className="grid max-h-[calc(100dvh-120px)] gap-3 overflow-y-auto p-4 pb-8">
+          {notifications.map((item) => (
+            <div key={item} className="rounded-2xl bg-[#F4F4F4] p-4 font-bold text-[#082743]">
+              {item}
             </div>
           ))}
         </div>
       </div>
     </div>
+  );
+}
+
+
+
+
+
+
+
+
+
+function LiveActivityEnginePanel() {
+  
+  const activities = [
+    "🚨 Boardwalk 92% Full",
+    "⚡ 3 Spots Left • Downtown",
+    "♻️ Spot Available Again • 11th Street",
+    "🏖️ Beach Access Parking Available",
+    "🔥 Event Parking Filling Fast",
+    "📍 Premium Spot Available • 12th Street",
+    "🎵 Event Parking Nearly Full",
+    "🚗 North End Parking Available",
+  ];
+
+
+  return (
+    <section id="live-activity" className="mx-auto max-w-7xl px-5 py-6">
+      <div className="overflow-hidden rounded-[2rem] border-4 border-[#082743] bg-[#082743] shadow-[8px_8px_0_#082743]">
+        <div className="flex items-center gap-4 border-b-4 border-[#1697D6] bg-[#FFD33D] px-5 py-3">
+          <div className="h-3 w-3 animate-pulse rounded-full bg-red-500" />
+
+          <p className="text-sm font-black uppercase tracking-wide text-[#082743]">
+            Live Parking Marketplace
+          </p>
+
+          <div className="rounded-full bg-[#082743] px-3 py-1 text-[10px] font-black uppercase text-white">
+            Live Spots
+          </div>
+        </div>
+
+        <div className="relative overflow-hidden py-4">
+          <div className="ticker-track flex min-w-max items-center gap-6 whitespace-nowrap px-6">
+            {[...activities, ...activities].map((activity, index) => (
+              <div
+                key={`${activity}-${index}`}
+                className="flex items-center gap-3 rounded-full border-2 border-white/20 bg-white/10 px-5 py-3 text-sm font-black text-white backdrop-blur"
+              >
+                <div className="h-2 w-2 rounded-full bg-[#FFD33D]" />
+                {activity}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <style jsx>{`
+          .ticker-track {
+            animation: tickerScroll 45s linear infinite;
+          }
+
+          @keyframes tickerScroll {
+            0% {
+              transform: translateX(0%);
+            }
+
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+        `}</style>
+      </div>
+    </section>
+  );
+}
+
+
+
+
+
+
+
+function InteractiveParkingMapPanel() {
+  const mapPins = [
+    {
+      top: "18%",
+      left: "22%",
+      color: "bg-green-500",
+      label: "Open",
+    },
+    {
+      top: "35%",
+      left: "48%",
+      color: "bg-yellow-400",
+      label: "Moderate",
+    },
+    {
+      top: "50%",
+      left: "70%",
+      color: "bg-orange-500",
+      label: "High Demand",
+    },
+    {
+      top: "65%",
+      left: "30%",
+      color: "bg-red-500",
+      label: "Almost Full",
+    },
+    {
+      top: "28%",
+      left: "78%",
+      color: "bg-green-500",
+      label: "New Spot",
+    },
+  ];
+
+  return (
+    <section id="interactive-map" className="mx-auto max-w-7xl px-5 py-10">
+      <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-8 shadow-[8px_8px_0_#082743]">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-sm font-black uppercase text-[#1697D6]">
+              Phase 41
+            </p>
+
+            <h2 className="text-3xl md:text-5xl font-black text-[#082743]">
+              Interactive Live Parking Map
+            </h2>
+
+            <p className="mt-4 max-w-3xl font-bold text-slate-700">
+              Explore live parking activity, demand heat zones, and real-time
+              availability through an intelligent interactive parking network.
+            </p>
+          </div>
+
+          <div className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-3 text-sm font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
+            Live Map Active
+          </div>
+        </div>
+
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+          <div className="relative min-h-[520px] overflow-hidden rounded-[2rem] border-4 border-[#082743] bg-gradient-to-br from-[#1697D6] via-[#8ad7ff] to-[#dff6ff]">
+            <div className="absolute inset-0 opacity-20">
+              <div className="grid h-full w-full grid-cols-6">
+                {Array.from({ length: 36 }).map((_, i) => (
+                  <div key={i} className="border border-white/40" />
+                ))}
+              </div>
+            </div>
+
+            <div className="absolute left-[8%] top-[8%] rounded-full bg-[#082743] px-4 py-2 text-xs font-black uppercase tracking-wide text-white">
+              Ocean City Live Parking Network
+            </div>
+
+            {mapPins.map((pin, index) => (
+              <div
+                key={index}
+                className="absolute"
+                style={{
+                  top: pin.top,
+                  left: pin.left,
+                }}
+              >
+                <div className="relative flex flex-col items-center">
+                  <div className={`h-6 w-6 rounded-full border-4 border-white ${pin.color} animate-pulse shadow-xl`} />
+
+                  <div className="mt-2 rounded-full border-2 border-[#082743] bg-white px-3 py-1 text-[10px] font-black uppercase text-[#082743] shadow">
+                    {pin.label}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            <div className="absolute bottom-5 left-5 right-5 grid gap-3 md:grid-cols-4">
+              {[
+                ["Green", "Easy Parking"],
+                ["Yellow", "Moderate Demand"],
+                ["Orange", "High Demand"],
+                ["Red", "Almost Full"],
+              ].map(([color, label]) => (
+                <div
+                  key={label}
+                  className="rounded-2xl border-2 border-[#082743] bg-white/90 p-3 backdrop-blur"
+                >
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={`h-4 w-4 rounded-full ${
+                        color === "Green"
+                          ? "bg-green-500"
+                          : color === "Yellow"
+                          ? "bg-yellow-400"
+                          : color === "Orange"
+                          ? "bg-orange-500"
+                          : "bg-red-500"
+                      }`}
+                    />
+
+                    <div>
+                      <p className="text-xs font-black uppercase text-[#082743]">
+                        {color}
+                      </p>
+
+                      <p className="text-[11px] font-bold text-slate-700">
+                        {label}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-5">
+            <div className="rounded-[2rem] border-4 border-[#082743] bg-[#082743] p-6 text-white">
+              <p className="text-2xl font-black">
+                Smart Zone Intelligence
+              </p>
+
+              <div className="mt-5 grid gap-3">
+                {[
+                  "Fastest beach access",
+                  "Low traffic exits",
+                  "Family-friendly parking",
+                  "Event congestion alerts",
+                  "Premium availability",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl bg-white/10 p-3 font-black"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border-4 border-[#082743] bg-[#FFD33D] p-6 text-[#082743]">
+              <p className="text-2xl font-black">
+                Real-Time Marketplace
+              </p>
+
+              <p className="mt-4 font-bold">
+                Dynamic parking activity updates help users instantly visualize
+                parking demand and availability across the shore.
+              </p>
+            </div>
+
+            <div className="rounded-[2rem] border-4 border-[#082743] bg-[#1697D6] p-6 text-white">
+              <p className="text-2xl font-black">
+                AI Navigation Layer
+              </p>
+
+              <p className="mt-4 font-bold text-slate-100">
+                Future-ready foundation for predictive parking routing,
+                intelligent recommendations, and smart city integrations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -5508,7 +5927,7 @@ async function saveProfile() {
   return (
     <main id="top" className="min-h-screen pb-24 bg-[linear-gradient(to_bottom,_#FFF8EB,_#FFD99B)] text-[#082743]">
       <Nav />
-      <MobileQuickActions onMenuClick={() => setMobileMenuOpen(true)} onNotificationsClick={() => setNotificationsOpen(true)} />
+      {/* MobileQuickActions temporarily removed for build stability */}
       <MobileMenuDrawer open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
       <NotificationsDrawer open={notificationsOpen} onClose={() => setNotificationsOpen(false)} />
 
