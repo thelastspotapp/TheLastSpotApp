@@ -330,7 +330,7 @@ function Logo({ small = false }: { small?: boolean }) {
       <div className="leading-[0.86]">
         <p className={`${small ? "text-xs" : "text-sm"} font-black italic text-white drop-shadow-[2px_2px_0_#082743]`}>The</p>
         <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-white drop-shadow-[3px_3px_0_#082743]`}>Last</p>
-        <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-[#FFD33D] drop-shadow-[3px_3px_0_#082743]`}>Spot</p>
+        <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-[#FFD33D] drop-shadow-[3px_3px_0_#082743]`}>Earn</p>
       </div>
     </div>
   );
@@ -356,7 +356,9 @@ function HostCenterCompactPanel() {
               <a href="#host-onboarding" className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
                 List My Spot
               </a>
-              
+              <a href="#shoreprice-ai" className="rounded-full border-4 border-[#082743] bg-white px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
+                ShorePrice™ AI
+              </a>
             </div>
           </div>
           <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-5 shadow">
@@ -390,7 +392,7 @@ function Nav() {
     },
     {
       title: "Host",
-      items: [["Host Center", "#host-onboarding"]],
+      items: [["Host Center", "#host-center"]],
     },
   ];
 
@@ -932,7 +934,7 @@ function MobileMenuDrawer({ open, onClose }: { open: boolean; onClose: () => voi
     ["Find Parking", "#interactive-map"],
     ["Reserve Spot", "#reserve-now"],
     ["Checkout", "#smart-checkout"],
-    ["Host Center", "#host-onboarding"],
+    ["Host Center", "#host-center"],
     ["My Session", "#smart-checkout"],
     ["Parking History", "#smart-checkout"],
     ["Profile", "#top"],
@@ -1876,10 +1878,10 @@ function SmartCheckoutExperiencePanel() {
 
 function RealActivityTickerPanel() {
   const [activities, setActivities] = useState<string[]>([
-    "🚗 Parking session started • Ocean City",
-    "📍 Spot opened • Boardwalk • Tap to Reserve",
-    "⏳ Session extended • Premium Spot",
-    "🔥 Event parking filling fast",
+    "🚗 Ocean City Spot Available • Tap to Reserve",
+    "📍 Boardwalk Spot Available • Tap to Reserve",
+    "♻️ Premium Spot Reopened • Tap to Reserve",
+    "🔥 Event Parking Available • Tap to Reserve",
   ]);
 
   const [latestSession, setLatestSession] = useState<any>(null);
@@ -1985,9 +1987,9 @@ function RealActivityTickerPanel() {
           <div className="overflow-hidden py-3">
             <div className="ticker-track flex min-w-max gap-4 whitespace-nowrap px-4 text-sm font-black text-white">
               {[...activities, ...activities].map((item, index) => (
-                <span key={`${item}-${index}`} className="rounded-full bg-white/10 px-4 py-2">
+                <a key={`${item}-${index}`} href="#reserve-now" className="rounded-full bg-white/10 px-4 py-2 transition hover:bg-white/20" aria-label={`View and reserve ${item}`}>
                   {item}
-                </span>
+                </a>
               ))}
             </div>
           </div>
@@ -2095,7 +2097,7 @@ function LiveSessionIntegrationPanel() {
 
     await supabase.from("session_activity").insert({
       activity_type: "session_started",
-      activity_message: "🚗 Parking session started • Ocean City",
+      activity_message: "🚗 Ocean City Spot Available • Tap to Reserve",
       spot_title: "Premium Boardwalk Spot",
       town: "Ocean City",
     });
@@ -2461,9 +2463,9 @@ function ParkingSessionEnginePanel() {
                 "⭐ New Host Verified • North End",
                 "🔥 Event Parking Filling Fast",
               ].map((item, index) => (
-                <span key={`${item}-${index}`} className="rounded-full bg-white/10 px-4 py-2">
+                <a key={`${item}-${index}`} href="#reserve-now" className="rounded-full bg-white/10 px-4 py-2 transition hover:bg-white/20" aria-label={`View and reserve ${item}`}>
                   {item}
-                </span>
+                </a>
               ))}
             </div>
           </div>
@@ -5622,7 +5624,17 @@ function AdminDashboard({ bookings, loading, onRefresh, onUpdateBookingStatus, o
 
 
 export default function HomePage() {
-  const [spots, setSpots] = useState<ParkingSpot[]>(fallbackSpots);
+  
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+  }, []);
+
+const [spots, setSpots] = useState<ParkingSpot[]>(fallbackSpots);
   const [loading, setLoading] = useState(true);
   const [selectedTown, setSelectedTown] = useState("Ocean City");
   const [usingLiveData, setUsingLiveData] = useState(false);
