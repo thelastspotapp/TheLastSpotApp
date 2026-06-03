@@ -353,12 +353,10 @@ function HostCenterCompactPanel() {
               List your driveway, set availability, and use ShorePrice™ AI to make smarter pricing decisions during beach weekends and events.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <a href="#host" className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
+              <a href="#host-onboarding" className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
                 List My Spot
               </a>
-              <a href="#shoreprice-ai" className="rounded-full border-4 border-[#082743] bg-white px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
-                ShorePrice™ AI
-              </a>
+              
             </div>
           </div>
           <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-5 shadow">
@@ -392,7 +390,7 @@ function Nav() {
     },
     {
       title: "Host",
-      items: [["Host Center", "#host-center"]],
+      items: [["Host Center", "#host-onboarding"]],
     },
   ];
 
@@ -934,7 +932,7 @@ function MobileMenuDrawer({ open, onClose }: { open: boolean; onClose: () => voi
     ["Find Parking", "#interactive-map"],
     ["Reserve Spot", "#reserve-now"],
     ["Checkout", "#smart-checkout"],
-    ["Host Center", "#host-center"],
+    ["Host Center", "#host-onboarding"],
     ["My Session", "#smart-checkout"],
     ["Parking History", "#smart-checkout"],
     ["Profile", "#top"],
@@ -1879,7 +1877,7 @@ function SmartCheckoutExperiencePanel() {
 function RealActivityTickerPanel() {
   const [activities, setActivities] = useState<string[]>([
     "🚗 Parking session started • Ocean City",
-    "📍 Spot opened • Boardwalk",
+    "📍 Spot opened • Boardwalk • Tap to Reserve",
     "⏳ Session extended • Premium Spot",
     "🔥 Event parking filling fast",
   ]);
