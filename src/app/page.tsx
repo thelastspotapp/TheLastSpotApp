@@ -380,6 +380,7 @@ function HostCenterCompactPanel() {
 
 function Nav() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const groupedItems: { title: string; items: [string, string][] }[] = [
     {
@@ -392,8 +393,17 @@ function Nav() {
     },
     {
       title: "Host",
-      items: [["Host Center", "#host-center"]],
+      items: [
+        ["Earn With Your Spot", "#host-onboarding"],
+        ["Host Center", "#host-center"],
+      ],
     },
+  ];
+
+  const mobileMenuItems: [string, string][] = [
+    ["🚗 Find Parking", "#interactive-map"],
+    ["💰 Earn With Your Spot", "#host-onboarding"],
+    ["❓ How It Works", "#how-it-works"],
   ];
 
   const mobileItems: [string, string, string][] = [
@@ -449,11 +459,35 @@ function Nav() {
 
           <a
             href="#interactive-map"
-            className="ml-auto shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743]"
+            className="ml-auto hidden shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] md:inline-flex"
           >
             Get Started
           </a>
+
+          <button
+            type="button"
+            onClick={() => setMobileOpen((value) => !value)}
+            className="ml-auto rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase text-[#082743] shadow-[3px_3px_0_#082743] md:hidden"
+            aria-label="Open mobile menu"
+          >
+            ☰ Menu
+          </button>
         </div>
+
+        {mobileOpen && (
+          <div className="mx-auto mt-3 grid max-w-7xl gap-2 rounded-3xl border-4 border-[#082743] bg-white p-3 shadow-[5px_5px_0_#082743] md:hidden">
+            {mobileMenuItems.map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-2xl bg-[#FFF3D6] px-4 py-4 text-sm font-black uppercase text-[#082743] shadow"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        )}
       </nav>
 
       {openGroup && (
@@ -844,7 +878,6 @@ function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotCli
         <div className="relative h-56 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" className="h-full w-full object-cover" alt="Beach" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#082743]/10 to-[#FFF8EB]" />
-          <div className="absolute left-1/2 top-[128px] z-10 -translate-x-1/2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-3 py-1 text-center text-[10px] font-black uppercase shadow-[3px_3px_0_#082743]"></div>
           <a
             href="#top"
             aria-label="Back to home"
@@ -890,6 +923,9 @@ function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotCli
                 </div>
               </button>
             ))}
+          </div>
+          <div className="mt-4 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-3 py-2 text-center text-[10px] font-black uppercase text-[#082743] shadow-[3px_3px_0_#082743]">
+            The Last Spot™ • Less Searching. More Enjoying.™
           </div>
         </div>
       </div>
@@ -5937,7 +5973,7 @@ async function saveProfile() {
             <div className="inline-flex items-center gap-2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-2 shadow-[5px_5px_0_#082743]"><span>🏖️</span><span className="font-black uppercase">{usingLiveData ? "Live database connected" : "Demo fallback mode"}</span></div>
             <h1 className="text-3xl md:text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl">Find Your Spot. <span className="text-[#1697D6]">Enjoy The Shore.</span></h1>
             <p className="max-w-2xl text-xl font-black uppercase text-[#F46036] md:text-2xl">Less Searching. More Enjoying.™</p>
-            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="#host-center" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
+            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="#host-onboarding" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
           </div>
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}><PhonePreview spots={spots} loading={loading} selectedTown={selectedTown} setSelectedTown={setSelectedTown} onSpotClick={setSelectedSpot} onMenuClick={() => setMobileMenuOpen(true)} onNotificationsClick={() => setNotificationsOpen(true)} /></motion.div>
         </div>
@@ -5955,6 +5991,73 @@ async function saveProfile() {
 
       <ShorePriceAIPanel />
 
+
+
+      <section id="host-onboarding" className="mx-auto max-w-7xl px-5 py-8">
+        <div className="rounded-[2rem] border-4 border-[#082743] bg-[#FFF3D6] p-6 shadow-[8px_8px_0_#082743] md:p-8">
+          <p className="text-sm font-black uppercase tracking-wide text-[#1697D6]">
+            Less Searching. More Enjoying.™
+          </p>
+          <h2 className="mt-2 text-4xl font-black text-[#082743] md:text-5xl">
+            Turn Your Driveway Into Income
+          </h2>
+          <p className="mt-3 max-w-3xl font-bold text-slate-700">
+            List your parking space, set your price, and earn from the space you already own in Ocean City and Cape May.
+          </p>
+
+          <div id="how-it-works" className="mt-6 grid gap-4 md:grid-cols-3">
+            {[
+              ["🏠", "List", "Add your driveway, lot, or parking space."],
+              ["💲", "Price", "Use ShorePrice™ AI or choose your own rate."],
+              ["💰", "Earn", "Accept reservations and get paid."],
+            ].map(([icon, title, desc]) => (
+              <div key={title} className="rounded-2xl border-4 border-[#082743] bg-white p-4 shadow">
+                <p className="text-3xl">{icon}</p>
+                <p className="mt-2 text-2xl font-black text-[#082743]">{title}</p>
+                <p className="mt-1 text-sm font-bold text-slate-600">{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="rounded-2xl border-4 border-[#082743] bg-white p-5">
+              <p className="text-xl font-black text-[#082743]">Why hosts say yes</p>
+              <div className="mt-4 grid gap-3">
+                {[
+                  "Verified reservations and payment on file",
+                  "You control availability and pricing",
+                  "Listing is simple and free to start",
+                  "Built for shore weekends, events, and peak demand",
+                ].map((item) => (
+                  <p key={item} className="rounded-xl bg-[#FFF3D6] p-3 font-bold text-[#082743]">✓ {item}</p>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border-4 border-[#082743] bg-[#082743] p-5 text-white">
+              <p className="text-xl font-black text-[#FFD33D]">Host FAQ</p>
+              <div className="mt-4 grid gap-3">
+                {[
+                  ["What if I need my spot?", "You control availability and can block dates."],
+                  ["What if nobody books?", "Listing is free. You only earn when a reservation happens."],
+                  ["How do I get paid?", "Payments are tracked so host earnings stay clear."],
+                  ["Do I meet drivers?", "No. The experience is designed to be simple and low-contact."],
+                ].map(([q, a]) => (
+                  <div key={q} className="rounded-xl bg-white/10 p-3">
+                    <p className="font-black text-white">{q}</p>
+                    <p className="mt-1 text-sm font-bold text-white/80">{a}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <a href="#host-center" className="mt-6 inline-flex rounded-full border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
+            List My Spot
+          </a>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-5 py-8 pb-28">
         <div className="rounded-[2rem] border-4 border-[#082743] bg-[#082743] p-6 text-center text-white shadow-[8px_8px_0_#082743]">
           <p className="text-3xl font-black">The Last Spot™</p>
@@ -5962,23 +6065,6 @@ async function saveProfile() {
         </div>
       </section>
     
-<section id="host-onboarding" className="mx-auto max-w-7xl px-5 py-10">
-  <div className="rounded-[2rem] border-4 border-[#082743] bg-[#FFF3D6] p-6">
-    <p className="font-black uppercase text-[#1697D6]">Less Searching. More Enjoying.™</p>
-    <h2 className="mt-2 text-4xl font-black text-[#082743]">Turn Your Driveway Into Income</h2>
-    <div className="mt-6 grid gap-4 md:grid-cols-3">
-      <div><strong>💰 Earn Extra Income</strong></div>
-      <div><strong>🛡️ Safe & Secure</strong></div>
-      <div><strong>📅 You Stay In Control</strong></div>
-    </div>
-    <div className="mt-6">
-      <p>1. List Your Spot</p>
-      <p>2. Set Your Price</p>
-      <p>3. Get Paid</p>
-    </div>
-  </div>
-</section>
-
 </main>
   );
 }
