@@ -144,43 +144,6 @@ const events = ["Night in Venice", "Spring Block Party", "First Night", "Cape Ma
 
 
 
-
-function HostOnboardingLitePanel() {
-  return (
-    <section id="host-onboarding" className="mx-auto max-w-7xl px-5 py-8">
-      <div className="rounded-[2rem] border-4 border-[#082743] bg-[#FFF3D6] p-6 shadow-[6px_6px_0_#082743]">
-        <p className="text-sm font-black uppercase tracking-wide text-[#1697D6]">
-          Earn With The Last Spot
-        </p>
-        <h2 className="mt-2 text-4xl font-black text-[#082743]">
-          Turn Your Driveway Into Income
-        </h2>
-        <p className="mt-3 max-w-3xl font-bold text-slate-700">
-          List your available parking space, set your availability, and start earning from the space you already own.
-        </p>
-        <div className="mt-5 grid gap-3 md:grid-cols-3">
-          {[
-            ["List", "Add your spot"],
-            ["Price", "Use ShorePrice™ AI"],
-            ["Earn", "Accept reservations"],
-          ].map(([title, desc]) => (
-            <div key={title} className="rounded-2xl border-4 border-[#082743] bg-white p-4 shadow">
-              <p className="text-xl font-black text-[#082743]">{title}</p>
-              <p className="mt-1 text-sm font-bold text-slate-600">{desc}</p>
-            </div>
-          ))}
-        </div>
-        <button
-          type="button"
-          className="mt-6 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]"
-        >
-          Start Host Setup
-        </button>
-      </div>
-    </section>
-  );
-}
-
 function ShorePriceAIPanel() {
   return (
     <section id="shoreprice-ai" className="mx-auto max-w-7xl px-5 py-8">
@@ -881,7 +844,7 @@ function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotCli
         <div className="relative h-56 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" className="h-full w-full object-cover" alt="Beach" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#082743]/10 to-[#FFF8EB]" />
-          
+          <div className="absolute left-1/2 top-[128px] z-10 -translate-x-1/2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-3 py-1 text-center text-[10px] font-black uppercase shadow-[3px_3px_0_#082743]">Clickable Live Listings</div>
           <a
             href="#top"
             aria-label="Back to home"
@@ -1915,10 +1878,10 @@ function SmartCheckoutExperiencePanel() {
 
 function RealActivityTickerPanel() {
   const [activities, setActivities] = useState<string[]>([
-    "🚗 Parking session started • Ocean City",
-    "📍 Spot opened • Boardwalk",
-    "⏳ Session extended • Premium Spot",
-    "🔥 Event parking filling fast",
+    "🚗 Ocean City Spot Available • Tap to Reserve",
+    "📍 Boardwalk Spot Available • Tap to Reserve",
+    "♻️ Premium Spot Reopened • Tap to Reserve",
+    "🔥 Event Parking Available • Tap to Reserve",
   ]);
 
   const [latestSession, setLatestSession] = useState<any>(null);
@@ -2024,9 +1987,9 @@ function RealActivityTickerPanel() {
           <div className="overflow-hidden py-3">
             <div className="ticker-track flex min-w-max gap-4 whitespace-nowrap px-4 text-sm font-black text-white">
               {[...activities, ...activities].map((item, index) => (
-                <span key={`${item}-${index}`} className="rounded-full bg-white/10 px-4 py-2">
+                <a key={`${item}-${index}`} href="#reserve-now" className="rounded-full bg-white/10 px-4 py-2 transition hover:bg-white/20" aria-label={`View and reserve ${item}`}>
                   {item}
-                </span>
+                </a>
               ))}
             </div>
           </div>
@@ -2134,7 +2097,7 @@ function LiveSessionIntegrationPanel() {
 
     await supabase.from("session_activity").insert({
       activity_type: "session_started",
-      activity_message: "🚗 Parking session started • Ocean City",
+      activity_message: "🚗 Ocean City Spot Available • Tap to Reserve",
       spot_title: "Premium Boardwalk Spot",
       town: "Ocean City",
     });
@@ -2500,9 +2463,9 @@ function ParkingSessionEnginePanel() {
                 "⭐ New Host Verified • North End",
                 "🔥 Event Parking Filling Fast",
               ].map((item, index) => (
-                <span key={`${item}-${index}`} className="rounded-full bg-white/10 px-4 py-2">
+                <a key={`${item}-${index}`} href="#reserve-now" className="rounded-full bg-white/10 px-4 py-2 transition hover:bg-white/20" aria-label={`View and reserve ${item}`}>
                   {item}
-                </span>
+                </a>
               ))}
             </div>
           </div>
@@ -5661,7 +5624,17 @@ function AdminDashboard({ bookings, loading, onRefresh, onUpdateBookingStatus, o
 
 
 export default function HomePage() {
-  const [spots, setSpots] = useState<ParkingSpot[]>(fallbackSpots);
+  
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+  }, []);
+
+const [spots, setSpots] = useState<ParkingSpot[]>(fallbackSpots);
   const [loading, setLoading] = useState(true);
   const [selectedTown, setSelectedTown] = useState("Ocean City");
   const [usingLiveData, setUsingLiveData] = useState(false);
@@ -5988,7 +5961,6 @@ async function saveProfile() {
           <p className="mt-2 text-lg font-black text-[#FFD33D]">Less Searching. More Enjoying.™</p>
         </div>
       </section>
-          <HostOnboardingLitePanel />
-</main>
+    </main>
   );
 }
