@@ -330,7 +330,7 @@ function Logo({ small = false }: { small?: boolean }) {
       <div className="leading-[0.86]">
         <p className={`${small ? "text-xs" : "text-sm"} font-black italic text-white drop-shadow-[2px_2px_0_#082743]`}>The</p>
         <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-white drop-shadow-[3px_3px_0_#082743]`}>Last</p>
-        <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-[#FFD33D] drop-shadow-[3px_3px_0_#082743]`}>Earn</p>
+        <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-[#FFD33D] drop-shadow-[3px_3px_0_#082743]`}>Spot</p>
       </div>
     </div>
   );
@@ -844,7 +844,7 @@ function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotCli
         <div className="relative h-56 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" className="h-full w-full object-cover" alt="Beach" />
           <div className="absolute inset-0 bg-gradient-to-b from-[#082743]/10 to-[#FFF8EB]" />
-          <div className="absolute left-1/2 top-[128px] z-10 -translate-x-1/2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-3 py-1 text-center text-[10px] font-black uppercase shadow-[3px_3px_0_#082743]">Clickable Live Listings</div>
+          <div className="absolute left-1/2 top-[128px] z-10 -translate-x-1/2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-3 py-1 text-center text-[10px] font-black uppercase shadow-[3px_3px_0_#082743]"></div>
           <a
             href="#top"
             aria-label="Back to home"
