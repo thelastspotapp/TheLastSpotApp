@@ -855,7 +855,7 @@ function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotCli
 
           
         </div>
-        <div className="-mt-5 rounded-t-[2rem] bg-[#FFF3D6] p-4 pt-5">
+        <div className="-mt-10 rounded-t-[2rem] bg-[#FFF3D6] p-4 pt-5">
           <button
             type="button"
             onClick={() => visible[0] && onSpotClick(visible[0])}
@@ -5961,6 +5961,24 @@ async function saveProfile() {
           <p className="mt-2 text-lg font-black text-[#FFD33D]">Less Searching. More Enjoying.™</p>
         </div>
       </section>
-    </main>
+    
+<section id="host-onboarding" className="mx-auto max-w-7xl px-5 py-10">
+  <div className="rounded-[2rem] border-4 border-[#082743] bg-[#FFF3D6] p-6">
+    <p className="font-black uppercase text-[#1697D6]">Less Searching. More Enjoying.™</p>
+    <h2 className="mt-2 text-4xl font-black text-[#082743]">Turn Your Driveway Into Income</h2>
+    <div className="mt-6 grid gap-4 md:grid-cols-3">
+      <div><strong>💰 Earn Extra Income</strong></div>
+      <div><strong>🛡️ Safe & Secure</strong></div>
+      <div><strong>📅 You Stay In Control</strong></div>
+    </div>
+    <div className="mt-6">
+      <p>1. List Your Spot</p>
+      <p>2. Set Your Price</p>
+      <p>3. Get Paid</p>
+    </div>
+  </div>
+</section>
+
+</main>
   );
 }
