@@ -1174,7 +1174,7 @@ function InteractiveParkingMapPanel() {
                   key={label}
                   className="rounded-2xl border-2 border-[#082743] bg-white/90 p-3 backdrop-blur"
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="hidden md:flex items-center gap-3">
                     <div
                       className={`h-4 w-4 rounded-full ${
                         color === "Green"
@@ -5625,7 +5625,8 @@ function AdminDashboard({ bookings, loading, onRefresh, onUpdateBookingStatus, o
 
 export default function HomePage() {
   
-  useEffect(() => {
+    const [mobileNavOpen, setMobileNavOpen] = useState(false);
+useEffect(() => {
     if (typeof window !== "undefined") {
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = "manual";
@@ -5916,6 +5917,35 @@ async function saveProfile() {
 
   return (
     <main id="top" className="min-h-screen pb-24 bg-[linear-gradient(to_bottom,_#FFF8EB,_#FFD99B)] text-[#082743]">
+
+      <div className="md:hidden mx-auto max-w-7xl px-5 pt-4">
+        <button
+          type="button"
+          onClick={() => setMobileNavOpen((open) => !open)}
+          className="flex w-full items-center justify-between rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-5 py-4 font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]"
+        >
+          <span>The Last Spot Menu</span>
+          <span>☰</span>
+        </button>
+
+        {mobileNavOpen && (
+          <div className="mt-3 grid gap-3 rounded-2xl border-4 border-[#082743] bg-white p-4 shadow-[4px_4px_0_#082743]">
+            <a href="#interactive-map" className="rounded-xl bg-[#FFF3D6] px-4 py-3 font-black">
+              🚗 Find Parking
+            </a>
+            <a href="/earn" className="rounded-xl bg-[#FFF3D6] px-4 py-3 font-black">
+              💰 Earn With Your Spot
+            </a>
+            <a href="#how-it-works" className="rounded-xl bg-[#FFF3D6] px-4 py-3 font-black">
+              ❓ How It Works
+            </a>
+            <a href="#contact" className="rounded-xl bg-[#FFF3D6] px-4 py-3 font-black">
+              📞 Contact
+            </a>
+          </div>
+        )}
+      </div>
+
       <Nav />
       {/* MobileQuickActions temporarily removed for build stability */}
       <MobileMenuDrawer open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
@@ -5962,6 +5992,39 @@ async function saveProfile() {
         </div>
       </section>
     
+
+      <section id="how-it-works" className="mx-auto max-w-7xl px-5 py-8">
+        <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-6 shadow-[6px_6px_0_#082743]">
+          <h2 className="text-4xl font-black text-[#082743]">How It Works</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl bg-[#FFF3D6] p-5">
+              <p className="text-sm font-black uppercase text-[#1697D6]">Drivers</p>
+              <p className="mt-2 text-2xl font-black">Find → Reserve → Checkout</p>
+            </div>
+            <div className="rounded-2xl bg-[#FFF3D6] p-5">
+              <p className="text-sm font-black uppercase text-[#1697D6]">Hosts</p>
+              <p className="mt-2 text-2xl font-black">List → Price → Earn</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="contact" className="mx-auto max-w-7xl px-5 py-8">
+        <div className="rounded-[2rem] border-4 border-[#082743] bg-[#082743] p-6 text-white shadow-[6px_6px_0_#1697D6]">
+          <h2 className="text-4xl font-black">Contact The Last Spot</h2>
+          <p className="mt-3 font-bold text-white/80">
+            Questions about hosting, partnerships, Ocean City, Cape May, or launch opportunities?
+          </p>
+          <a
+            href="mailto:ladd.ryan7@gmail.com"
+            className="mt-5 inline-block rounded-full border-4 border-white bg-[#FFD33D] px-6 py-4 font-black uppercase text-[#082743] shadow-[4px_4px_0_#1697D6]"
+          >
+            Contact Us
+          </a>
+        </div>
+      </section>
+
 </main>
   );
 }
