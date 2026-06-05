@@ -378,10 +378,12 @@ function HostCenterCompactPanel() {
   );
 }
 
+
 function Nav() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const groupedItems: { title: string; items: [string, string][] }[] = [
+  const desktopGroups: { title: string; items: [string, string][] }[] = [
     {
       title: "Explore",
       items: [
@@ -392,8 +394,23 @@ function Nav() {
     },
     {
       title: "Host",
-      items: [["Host Center", "#host-center"]],
+      items: [
+        ["Earn With Your Spot", "/earn"],
+        ["Host Center", "/earn"],
+      ],
     },
+  ];
+
+  const desktopLinks: [string, string][] = [
+    ["How It Works", "#how-it-works"],
+    ["Contact", "#contact"],
+  ];
+
+  const mobileMenuItems: [string, string][] = [
+    ["🚗 Find Parking", "#interactive-map"],
+    ["💰 Earn With Your Spot", "/earn"],
+    ["❓ How It Works", "#how-it-works"],
+    ["📞 Contact", "#contact"],
   ];
 
   const mobileItems: [string, string, string][] = [
@@ -415,7 +432,7 @@ function Nav() {
           </a>
 
           <div className="hidden min-w-0 flex-1 items-center gap-3 overflow-visible whitespace-nowrap px-2 py-2 md:flex">
-            {groupedItems.map((group) => (
+            {desktopGroups.map((group) => (
               <div key={group.title} className="relative shrink-0">
                 <button
                   type="button"
@@ -445,15 +462,49 @@ function Nav() {
                 )}
               </div>
             ))}
+
+            {desktopLinks.map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                className="rounded-full border-2 border-[#082743] bg-white px-4 py-2 text-xs font-black uppercase text-[#082743] shadow-[2px_2px_0_#082743] transition hover:bg-[#FFD33D]"
+              >
+                {label}
+              </a>
+            ))}
           </div>
 
           <a
             href="#interactive-map"
-            className="ml-auto shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743]"
+            className="ml-auto hidden shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] sm:inline-flex"
           >
             Get Started
           </a>
+
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            className="ml-auto rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] md:hidden"
+            aria-label="Open mobile menu"
+          >
+            ☰ Menu
+          </button>
         </div>
+
+        {mobileMenuOpen && (
+          <div className="mx-auto mt-3 grid max-w-7xl gap-2 rounded-3xl border-4 border-[#082743] bg-white p-3 shadow-[5px_5px_0_#082743] md:hidden">
+            {mobileMenuItems.map(([label, href]) => (
+              <a
+                key={label}
+                href={href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="rounded-2xl bg-[#FFF3D6] px-4 py-3 text-base font-black text-[#082743] shadow transition hover:bg-[#FFD33D]"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        )}
       </nav>
 
       {openGroup && (
@@ -5917,35 +5968,6 @@ async function saveProfile() {
 
   return (
     <main id="top" className="min-h-screen pb-24 bg-[linear-gradient(to_bottom,_#FFF8EB,_#FFD99B)] text-[#082743]">
-
-      <div className="md:hidden mx-auto max-w-7xl px-5 pt-4">
-        <button
-          type="button"
-          onClick={() => setMobileNavOpen((open) => !open)}
-          className="flex w-full items-center justify-between rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-5 py-4 font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]"
-        >
-          <span>The Last Spot Menu</span>
-          <span>☰</span>
-        </button>
-
-        {mobileNavOpen && (
-          <div className="mt-3 grid gap-3 rounded-2xl border-4 border-[#082743] bg-white p-4 shadow-[4px_4px_0_#082743]">
-            <a href="#interactive-map" className="rounded-xl bg-[#FFF3D6] px-4 py-3 font-black">
-              🚗 Find Parking
-            </a>
-            <a href="/earn" className="rounded-xl bg-[#FFF3D6] px-4 py-3 font-black">
-              💰 Earn With Your Spot
-            </a>
-            <a href="#how-it-works" className="rounded-xl bg-[#FFF3D6] px-4 py-3 font-black">
-              ❓ How It Works
-            </a>
-            <a href="#contact" className="rounded-xl bg-[#FFF3D6] px-4 py-3 font-black">
-              📞 Contact
-            </a>
-          </div>
-        )}
-      </div>
-
       <Nav />
       {/* MobileQuickActions temporarily removed for build stability */}
       <MobileMenuDrawer open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
