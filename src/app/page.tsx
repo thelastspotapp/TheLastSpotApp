@@ -475,7 +475,7 @@ function Nav() {
 
           <a
             href="#interactive-map"
-            className="ml-auto hidden shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] sm:inline-flex"
+            className="ml-auto hidden shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] md:inline-flex"
           >
             Get Started
           </a>
@@ -5727,51 +5727,7 @@ async function saveProfile() {
       <section className="relative overflow-hidden px-5 py-10 md:py-16">
         <div className="absolute right-10 top-8 h-72 w-72 rounded-full bg-[#FFB22C] opacity-70 blur-3xl" />
         <div className="absolute left-0 top-24 h-72 w-72 rounded-full bg-[#1697D6] opacity-30 blur-3xl" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="space-y-7 text-center lg:text-left">
-            <div className="mx-auto inline-flex rounded-[2rem] border-[5px] border-[#082743] bg-gradient-to-br from-[#1697D6] to-[#0C6FA3] p-6 shadow-[10px_10px_0_#082743] lg:mx-0"><Logo /></div>
-            <div className="inline-flex items-center gap-2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-2 shadow-[5px_5px_0_#082743]"><span>🏖️</span><span className="font-black uppercase">{usingLiveData ? "Live database connected" : "Demo fallback mode"}</span></div>
-            <h1 className="text-3xl md:text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl">Find Your Spot. <span className="text-[#1697D6]">Enjoy The Shore.</span></h1>
-            <p className="max-w-2xl text-xl font-black uppercase text-[#F46036] md:text-2xl">Less Searching. More Enjoying.™</p>
-            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="#host-center" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
-          </div>
-          <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}><PhonePreview spots={spots} loading={loading} selectedTown={selectedTown} setSelectedTown={setSelectedTown} onSpotClick={setSelectedSpot} onMenuClick={() => setMobileMenuOpen(true)} onNotificationsClick={() => setNotificationsOpen(true)} /></motion.div>
-        </div>
-      </section>
-
-      <LiveActivityEnginePanel />
-
-      <InteractiveParkingMapPanel />
-
-      <InstantReservationFlowPanel />
-
-      <SmartCheckoutExperiencePanel />
-
-      <HostCenterCompactPanel />
-
-      <ShorePriceAIPanel />
-
-      <section className="mx-auto max-w-7xl px-5 py-8 pb-28">
-        <div className="rounded-[2rem] border-4 border-[#082743] bg-[#082743] p-6 text-center text-white shadow-[8px_8px_0_#082743]">
-          <p className="text-3xl font-black">The Last Spot™</p>
-          <p className="mt-2 text-lg font-black text-[#FFD33D]">Less Searching. More Enjoying.™</p>
-        </div>
-      </section>
-    
-
-      <section id="how-it-works" className="mx-auto max-w-7xl px-5 py-8">
-        <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-6 shadow-[6px_6px_0_#082743]">
-          <h2 className="text-4xl font-black text-[#082743]">How It Works</h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl bg-[#FFF3D6] p-5">
-              <p className="text-sm font-black uppercase text-[#1697D6]">Drivers</p>
-              <p className="mt-2 text-2xl font-black">Find → Reserve → Checkout</p>
-            </div>
-            <div className="rounded-2xl bg-[#FFF3D6] p-5">
-              <p className="text-sm font-black uppercase text-[#1697D6]">Hosts</p>
-              <p className="mt-2 text-2xl font-black">List → Price → Earn</p>
-            </div>
-          </div>
+</div>
         </div>
       </section>
 
@@ -5788,6 +5744,23 @@ async function saveProfile() {
           >
             Contact Us
           </a>
+        </div>
+      </section>
+
+
+      <section id="how-it-works" className="mx-auto max-w-7xl px-5 py-8">
+        <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-6 shadow-[6px_6px_0_#082743]">
+          <h2 className="text-4xl font-black text-[#082743]">How It Works</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl bg-[#FFF3D6] p-5">
+              <p className="text-sm font-black uppercase text-[#1697D6]">Drivers</p>
+              <p className="mt-2 text-2xl font-black">Find → Reserve → Checkout</p>
+            </div>
+            <div className="rounded-2xl bg-[#FFF3D6] p-5">
+              <p className="text-sm font-black uppercase text-[#1697D6]">Hosts</p>
+              <p className="mt-2 text-2xl font-black">List → Price → Earn</p>
+            </div>
+          </div>
         </div>
       </section>
 
