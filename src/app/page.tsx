@@ -2675,8 +2675,7 @@ function CompactFeatureVault() {
     },
   ];
 
-  return (
-);
+  return null;
 }
 
 function LiveQREnforcementPanel() {
