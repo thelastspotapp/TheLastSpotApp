@@ -379,6 +379,7 @@ function HostCenterCompactPanel() {
 }
 
 
+
 function Nav() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -413,7 +414,7 @@ function Nav() {
     ["📞 Contact", "#contact"],
   ];
 
-  const mobileItems: [string, string, string][] = [
+  const bottomItems: [string, string, string][] = [
     ["🔍", "Find", "#interactive-map"],
     ["📍", "Reserve", "#reserve-now"],
     ["💳", "Checkout", "#smart-checkout"],
@@ -431,14 +432,12 @@ function Nav() {
             <Logo small />
           </a>
 
-          <div className="hidden min-w-0 flex-1 items-center gap-3 overflow-visible whitespace-nowrap px-2 py-2 md:flex">
+          <div className="hidden flex-1 items-center gap-3 overflow-visible whitespace-nowrap px-2 py-2 md:flex">
             {desktopGroups.map((group) => (
               <div key={group.title} className="relative shrink-0">
                 <button
                   type="button"
-                  onClick={() =>
-                    setOpenGroup(openGroup === group.title ? null : group.title)
-                  }
+                  onClick={() => setOpenGroup(openGroup === group.title ? null : group.title)}
                   className="rounded-full border-2 border-[#082743] bg-white px-4 py-2 text-xs font-black uppercase text-[#082743] shadow-[2px_2px_0_#082743] transition hover:bg-[#FFD33D]"
                 >
                   {group.title} ▾
@@ -518,7 +517,7 @@ function Nav() {
 
       <div className="fixed bottom-0 left-0 right-0 z-50 border-t-4 border-[#082743] bg-[#FFF8EB] px-2 py-2 shadow-[0_-4px_0_#082743] md:hidden">
         <div className="grid grid-cols-4 gap-1">
-          {mobileItems.map(([icon, label, href]) => (
+          {bottomItems.map(([icon, label, href]) => (
             <a
               key={label}
               href={href}
