@@ -382,9 +382,7 @@ function HostCenterCompactPanel() {
 
 function Nav() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const desktopGroups: { title: string; items: [string, string][] }[] = [
+const desktopGroups: { title: string; items: [string, string][] }[] = [
     {
       title: "Explore",
       items: [
@@ -5436,8 +5434,7 @@ const [spots, setSpots] = useState<ParkingSpot[]>(fallbackSpots);
   const [usingLiveData, setUsingLiveData] = useState(false);
   const [selectedSpot, setSelectedSpot] = useState<ParkingSpot | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
-  const [adminMessage, setAdminMessage] = useState("");
+const [adminMessage, setAdminMessage] = useState("");
   const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewBooking, setReviewBooking] = useState<BookingRequest | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -5713,9 +5710,6 @@ async function saveProfile() {
   return (
     <main id="top" className="min-h-screen pb-24 bg-[linear-gradient(to_bottom,_#FFF8EB,_#FFD99B)] text-[#082743]">
       <Nav />
-      {/* MobileQuickActions temporarily removed for build stability */}
-      <MobileMenuDrawer open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
-      <NotificationsDrawer open={notificationsOpen} onClose={() => setNotificationsOpen(false)} />
 
       {selectedSpot && <SpotModal spot={selectedSpot} onClose={() => setSelectedSpot(null)} />}
       {reviewBooking && <ReviewModal booking={reviewBooking} onClose={() => setReviewBooking(null)} onSaved={loadReviews} />}
