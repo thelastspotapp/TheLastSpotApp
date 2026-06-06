@@ -249,12 +249,12 @@ function UnifiedParkingHero() {
               and premium shore parking all in one intelligent parking platform.
             </p>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <button className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-4 text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#021524] transition hover:-translate-y-1">
-                Find Parking Now
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <button className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-3 text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#021524] transition hover:-translate-y-1">
+                Find Parking
               </button>
 
-              <button className="rounded-full border-2 border-white/20 bg-white/10 px-8 py-4 text-lg font-black uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/20">
+              <button className="rounded-full border-2 border-white/20 bg-white/10 px-8 py-3 text-lg font-black uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/20">
                 Open Live Map
               </button>
             </div>
@@ -1545,7 +1545,7 @@ function HostOnboardingDashboardPanel() {
 
             <button
               type="button"
-              className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-4 text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#082743] transition hover:-translate-y-1"
+              className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-3 text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#082743] transition hover:-translate-y-1"
             >
               Submit Spot For Review
             </button>
@@ -2554,7 +2554,7 @@ function UnifiedHostEarningsPanel() {
             and start earning during beach weekends, concerts, and high-demand events.
           </p>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <a
               href="#host-onboarding"
               className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-4 text-center text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#021524] transition hover:-translate-y-1"
@@ -5728,7 +5728,7 @@ async function saveProfile() {
             <div className="inline-flex items-center gap-2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-2 shadow-[5px_5px_0_#082743]"><span>🏖️</span><span className="font-black uppercase">{usingLiveData ? "Live database connected" : "Demo fallback mode"}</span></div>
             <h1 className="text-3xl md:text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl">Find Your Spot. <span className="text-[#1697D6]">Enjoy The Shore.</span></h1>
             <p className="max-w-2xl text-xl font-black uppercase text-[#F46036] md:text-2xl">Less Searching. More Enjoying.™</p>
-            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="/earn" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
+            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="/earn" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Earn With Your Spot</a></div>
           </div>
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}><PhonePreview spots={spots} loading={loading} selectedTown={selectedTown} setSelectedTown={setSelectedTown} onSpotClick={setSelectedSpot} onMenuClick={() => setMobileMenuOpen(true)} onNotificationsClick={() => setNotificationsOpen(true)} /></motion.div>
         </div>
