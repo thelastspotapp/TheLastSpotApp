@@ -410,9 +410,7 @@ function Nav() {
 
   const mobileMenuItems: [string, string][] = [
     ["🚗 Find Parking", "#interactive-map"],
-    ["📍 Reserve Spot", "#reserve-now"],
-    ["💳 Checkout", "#smart-checkout"],
-    ["💰 Earn With Your Spot", "/earn"],
+        ["💰 Earn With Your Spot", "/earn"],
     ["❓ How It Works", "#how-it-works"],
     ["📞 Contact", "#contact"],
   ];
@@ -487,7 +485,7 @@ function Nav() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="mx-auto mt-3 grid max-w-7xl gap-2 rounded-3xl border-4 border-[#082743] bg-white p-3 shadow-[5px_5px_0_#082743] xl:hidden">
+          <div className="absolute right-4 top-full z-[999] mt-2 grid w-[280px] gap-2 rounded-3xl border-4 border-[#082743] bg-white p-3 shadow-[5px_5px_0_#082743] xl:hidden">
             {mobileMenuItems.map(([label, href]) => (
               <a
                 key={label}
@@ -947,14 +945,15 @@ function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotCli
 
 
 
-function MobileQuickActions({
-  onMenuClick,
-  onNotificationsClick,
-}: {
-  onMenuClick: () => void;
-  onNotificationsClick: () => void;
-}) {
-  return null;
+function MobileQuickActions(){
+  return (
+    <div className="fixed bottom-3 left-1/2 z-[400] flex -translate-x-1/2 gap-2 xl:hidden">
+      <a href="#interactive-map" className="rounded-full border-2 border-[#082743] bg-white px-3 py-2 font-black">🔍 Find</a>
+      <a href="#reserve-now" className="rounded-full border-2 border-[#082743] bg-white px-3 py-2 font-black">📍 Reserve</a>
+      <a href="#smart-checkout" className="rounded-full border-2 border-[#082743] bg-white px-3 py-2 font-black">💳 Checkout</a>
+      <a href="/earn" className="rounded-full border-2 border-[#082743] bg-[#FFD33D] px-3 py-2 font-black">💰 Earn</a>
+    </div>
+  );
 }
 
 
@@ -5772,6 +5771,8 @@ async function saveProfile() {
         </div>
       </section>
 
+
+<MobileQuickActions />
 </main>
   );
 }
