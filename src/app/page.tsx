@@ -380,6 +380,7 @@ function HostCenterCompactPanel() {
 
 
 
+
 function Nav() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -409,22 +410,17 @@ function Nav() {
 
   const mobileMenuItems: [string, string][] = [
     ["🚗 Find Parking", "#interactive-map"],
+    ["📍 Reserve Spot", "#reserve-now"],
+    ["💳 Checkout", "#smart-checkout"],
     ["💰 Earn With Your Spot", "/earn"],
     ["❓ How It Works", "#how-it-works"],
     ["📞 Contact", "#contact"],
   ];
 
-  const bottomItems: [string, string, string][] = [
-    ["🔍", "Find", "#interactive-map"],
-    ["📍", "Reserve", "#reserve-now"],
-    ["💳", "Checkout", "#smart-checkout"],
-    ["💰", "Earn", "/earn"],
-  ];
-
   return (
     <>
       <nav className="sticky top-0 z-[300] border-b-4 border-[#082743] bg-[#FFF8EB]/95 px-4 py-3 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center gap-3 overflow-visible">
+        <div className="mx-auto flex max-w-7xl items-center gap-3">
           <a
             href="#top"
             className="shrink-0 rounded-2xl border-4 border-[#082743] bg-gradient-to-br from-[#1697D6] to-[#082743] px-3 py-2 shadow-[4px_4px_0_#082743]"
@@ -432,7 +428,7 @@ function Nav() {
             <Logo small />
           </a>
 
-          <div className="hidden flex-1 items-center gap-3 overflow-visible whitespace-nowrap px-2 py-2 md:flex">
+          <div className="hidden flex-1 items-center gap-3 whitespace-nowrap px-2 py-2 md:flex">
             {desktopGroups.map((group) => (
               <div key={group.title} className="relative shrink-0">
                 <button
@@ -475,7 +471,7 @@ function Nav() {
 
           <a
             href="#interactive-map"
-            className="ml-auto hidden shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] sm:inline-flex"
+            className="ml-auto hidden shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] md:inline-flex"
           >
             Get Started
           </a>
@@ -514,21 +510,6 @@ function Nav() {
           className="fixed inset-0 z-[250] hidden bg-transparent md:block"
         />
       )}
-
-      <div className="fixed bottom-0 left-0 right-0 z-50 border-t-4 border-[#082743] bg-[#FFF8EB] px-2 py-2 shadow-[0_-4px_0_#082743] md:hidden">
-        <div className="grid grid-cols-4 gap-1">
-          {bottomItems.map(([icon, label, href]) => (
-            <a
-              key={label}
-              href={href}
-              className="rounded-2xl bg-white px-1 py-2 text-center text-[10px] font-black uppercase text-[#082743] shadow"
-            >
-              <span className="block text-lg leading-none">{icon}</span>
-              {label}
-            </a>
-          ))}
-        </div>
-      </div>
     </>
   );
 }
@@ -5733,7 +5714,7 @@ async function saveProfile() {
             <div className="inline-flex items-center gap-2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-2 shadow-[5px_5px_0_#082743]"><span>🏖️</span><span className="font-black uppercase">{usingLiveData ? "Live database connected" : "Demo fallback mode"}</span></div>
             <h1 className="text-3xl md:text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl">Find Your Spot. <span className="text-[#1697D6]">Enjoy The Shore.</span></h1>
             <p className="max-w-2xl text-xl font-black uppercase text-[#F46036] md:text-2xl">Less Searching. More Enjoying.™</p>
-            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="#host-center" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
+            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="/earn" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
           </div>
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}><PhonePreview spots={spots} loading={loading} selectedTown={selectedTown} setSelectedTown={setSelectedTown} onSpotClick={setSelectedSpot} onMenuClick={() => setMobileMenuOpen(true)} onNotificationsClick={() => setNotificationsOpen(true)} /></motion.div>
         </div>
