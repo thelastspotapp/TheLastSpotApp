@@ -428,7 +428,7 @@ function Nav() {
             <Logo small />
           </a>
 
-          <div className="hidden flex-1 items-center gap-3 whitespace-nowrap px-2 py-2 md:flex">
+          <div className="hidden flex-1 items-center gap-3 whitespace-nowrap px-2 py-2 lg:flex">
             {desktopGroups.map((group) => (
               <div key={group.title} className="relative shrink-0">
                 <button
@@ -471,7 +471,7 @@ function Nav() {
 
           <a
             href="#interactive-map"
-            className="ml-auto hidden shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] md:inline-flex"
+            className="ml-auto hidden shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] lg:inline-flex"
           >
             Get Started
           </a>
@@ -479,7 +479,7 @@ function Nav() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen((open) => !open)}
-            className="ml-auto rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] md:hidden"
+            className="ml-auto rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] lg:hidden"
             aria-label="Open mobile menu"
           >
             ☰ Menu
@@ -487,7 +487,7 @@ function Nav() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="mx-auto mt-3 grid max-w-7xl gap-2 rounded-3xl border-4 border-[#082743] bg-white p-3 shadow-[5px_5px_0_#082743] md:hidden">
+          <div className="mx-auto mt-3 grid max-w-7xl gap-2 rounded-3xl border-4 border-[#082743] bg-white p-3 shadow-[5px_5px_0_#082743] lg:hidden">
             {mobileMenuItems.map(([label, href]) => (
               <a
                 key={label}
@@ -507,7 +507,7 @@ function Nav() {
           type="button"
           aria-label="Close navigation menu"
           onClick={() => setOpenGroup(null)}
-          className="fixed inset-0 z-[250] hidden bg-transparent md:block"
+          className="fixed inset-0 z-[250] hidden bg-transparent lg:block"
         />
       )}
     </>
