@@ -946,12 +946,27 @@ function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotCli
 
 
 function MobileQuickActions(){
+  const actions = [
+    ["🔍", "Find", "#interactive-map", "bg-white"],
+    ["📍", "Reserve", "#reserve-now", "bg-white"],
+    ["💳", "Checkout", "#smart-checkout", "bg-white"],
+    ["💰", "Earn", "/earn", "bg-[#FFD33D]"],
+  ];
+
   return (
-    <div className="fixed bottom-3 left-1/2 z-[400] flex -translate-x-1/2 gap-2 xl:hidden">
-      <a href="#interactive-map" className="rounded-full border-2 border-[#082743] bg-white px-3 py-2 font-black">🔍 Find</a>
-      <a href="#reserve-now" className="rounded-full border-2 border-[#082743] bg-white px-3 py-2 font-black">📍 Reserve</a>
-      <a href="#smart-checkout" className="rounded-full border-2 border-[#082743] bg-white px-3 py-2 font-black">💳 Checkout</a>
-      <a href="/earn" className="rounded-full border-2 border-[#082743] bg-[#FFD33D] px-3 py-2 font-black">💰 Earn</a>
+    <div className="fixed bottom-3 left-1/2 z-[400] w-[calc(100%-24px)] max-w-[420px] -translate-x-1/2 rounded-[1.4rem] border-2 border-[#082743] bg-white/95 px-2 py-2 shadow-[0_5px_0_#082743] backdrop-blur xl:hidden">
+      <div className="grid grid-cols-4 gap-1">
+        {actions.map(([icon, label, href, bg]) => (
+          <a
+            key={label}
+            href={href}
+            className={`flex h-[52px] flex-col items-center justify-center rounded-[1rem] border border-[#082743]/25 ${bg} text-center font-black text-[#082743]`}
+          >
+            <span className="text-lg leading-none">{icon}</span>
+            <span className="mt-1 text-[11px] leading-none">{label}</span>
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
