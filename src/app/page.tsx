@@ -249,12 +249,12 @@ function UnifiedParkingHero() {
               and premium shore parking all in one intelligent parking platform.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <button className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-3 text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#021524] transition hover:-translate-y-1">
-                Find Parking
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <button className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-4 text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#021524] transition hover:-translate-y-1">
+                Find Parking Now
               </button>
 
-              <button className="rounded-full border-2 border-white/20 bg-white/10 px-8 py-3 text-lg font-black uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/20">
+              <button className="rounded-full border-2 border-white/20 bg-white/10 px-8 py-4 text-lg font-black uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/20">
                 Open Live Map
               </button>
             </div>
@@ -391,7 +391,7 @@ function Nav() {
       items: [
         ["Find Parking", "#interactive-map"],
         ["Reserve Spot", "#reserve-now"],
-        ["Checkout", "#smart-checkout"],
+        ["Park", "#smart-checkout"],
       ],
     },
     {
@@ -669,7 +669,7 @@ function SpotModal({ spot, onClose }: { spot: ParkingSpot; onClose: () => void }
               onClick={goHomeFromModal}
               className="rounded-2xl px-2 py-1 text-center text-sm font-black uppercase text-[#082743]"
             >
-              The Last Spot
+              TLS! • The Last Spot
             </button>
 
             <button
@@ -949,7 +949,7 @@ function MobileQuickActions(){
   const actions = [
     ["🔍", "Find", "#interactive-map", "bg-white"],
     ["📍", "Reserve", "#reserve-now", "bg-white"],
-    ["💳", "Checkout", "#smart-checkout", "bg-white"],
+    ["💳", "Park", "#smart-checkout", "bg-white"],
     ["💰", "Earn", "/earn", "bg-[#FFD33D]"],
   ];
 
@@ -978,7 +978,7 @@ function MobileMenuDrawer({ open, onClose }: { open: boolean; onClose: () => voi
   const links = [
     ["Find Parking", "#interactive-map"],
     ["Reserve Spot", "#reserve-now"],
-    ["Checkout", "#smart-checkout"],
+    ["Park", "#smart-checkout"],
     ["Host Center", "#host-center"],
     ["My Session", "#smart-checkout"],
     ["Parking History", "#smart-checkout"],
@@ -1545,7 +1545,7 @@ function HostOnboardingDashboardPanel() {
 
             <button
               type="button"
-              className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-3 text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#082743] transition hover:-translate-y-1"
+              className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-4 text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#082743] transition hover:-translate-y-1"
             >
               Submit Spot For Review
             </button>
@@ -1762,7 +1762,7 @@ function InstantReservationFlowPanel() {
 
 
 
-function SmartCheckoutExperiencePanel() {
+function SmartParkExperiencePanel() {
   const details = [
     {
       title: "Beachfront Premium",
@@ -1798,7 +1798,7 @@ function SmartCheckoutExperiencePanel() {
             </p>
 
             <h2 className="mt-2 text-3xl md:text-5xl font-black text-[#082743]">
-              Smart Checkout Experience
+              Smart Park Experience
             </h2>
 
             <p className="mt-4 max-w-3xl font-bold text-slate-700">
@@ -1808,7 +1808,7 @@ function SmartCheckoutExperiencePanel() {
           </div>
 
           <div className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-3 text-sm font-black uppercase tracking-wide text-[#082743] shadow-[4px_4px_0_#082743]">
-            Smart Checkout Active
+            Smart Park Active
           </div>
         </div>
 
@@ -2554,7 +2554,7 @@ function UnifiedHostEarningsPanel() {
             and start earning during beach weekends, concerts, and high-demand events.
           </p>
 
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <a
               href="#host-onboarding"
               className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-4 text-center text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#021524] transition hover:-translate-y-1"
@@ -2646,7 +2646,7 @@ function CompactFeatureVault() {
       items: [
         "Host Analytics",
         "Revenue Engine",
-        "Stripe Checkout",
+        "Stripe Park",
         "Owner Dashboard",
       ],
     },
@@ -2980,7 +2980,7 @@ function ResponsiveNavigationPanel() {
   );
 }
 
-function RealStripeCheckoutPanel() {
+function RealStripeParkPanel() {
   return (
     <section id="stripe-checkout" className="mx-auto max-w-6xl px-5 py-10">
       <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-8 shadow-[8px_8px_0_#082743]">
@@ -2991,7 +2991,7 @@ function RealStripeCheckoutPanel() {
             </p>
 
             <h2 className="text-3xl md:text-5xl font-black text-[#082743]">
-              Real Stripe Checkout Flow
+              Real Stripe Park Flow
             </h2>
 
             <p className="mt-4 max-w-3xl font-bold text-slate-700">
@@ -3014,7 +3014,7 @@ function RealStripeCheckoutPanel() {
 
         <div className="mt-8 grid gap-5 md:grid-cols-4">
           {[
-            "Stripe Checkout",
+            "Stripe Park",
             "Deposit Holds",
             "Platform Fees",
             "Refund Tracking",
@@ -3326,7 +3326,7 @@ function StripeRevenueEnginePanel({
 
         <div className="mt-8 grid gap-4 md:grid-cols-4">
           {[
-            "Stripe Checkout",
+            "Stripe Park",
             "Host Payouts",
             "Platform Fees",
             "Revenue Analytics",
@@ -5728,7 +5728,7 @@ async function saveProfile() {
             <div className="inline-flex items-center gap-2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-2 shadow-[5px_5px_0_#082743]"><span>🏖️</span><span className="font-black uppercase">{usingLiveData ? "Live database connected" : "Demo fallback mode"}</span></div>
             <h1 className="text-3xl md:text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl">Find Your Spot. <span className="text-[#1697D6]">Enjoy The Shore.</span></h1>
             <p className="max-w-2xl text-xl font-black uppercase text-[#F46036] md:text-2xl">Less Searching. More Enjoying.™</p>
-            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="/earn" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Earn With Your Spot</a></div>
+            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="/earn" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
           </div>
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}><PhonePreview spots={spots} loading={loading} selectedTown={selectedTown} setSelectedTown={setSelectedTown} onSpotClick={setSelectedSpot} onMenuClick={() => setMobileMenuOpen(true)} onNotificationsClick={() => setNotificationsOpen(true)} /></motion.div>
         </div>
@@ -5740,7 +5740,7 @@ async function saveProfile() {
 
       <InstantReservationFlowPanel />
 
-      <SmartCheckoutExperiencePanel />
+      <SmartParkExperiencePanel />
 
       <HostCenterCompactPanel />
 
@@ -5760,7 +5760,7 @@ async function saveProfile() {
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl bg-[#FFF3D6] p-5">
               <p className="text-sm font-black uppercase text-[#1697D6]">Drivers</p>
-              <p className="mt-2 text-2xl font-black">Find → Reserve → Checkout</p>
+              <p className="mt-2 text-2xl font-black">Find → Reserve → Park</p>
             </div>
             <div className="rounded-2xl bg-[#FFF3D6] p-5">
               <p className="text-sm font-black uppercase text-[#1697D6]">Hosts</p>
