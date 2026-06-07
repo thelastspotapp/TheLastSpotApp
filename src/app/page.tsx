@@ -669,7 +669,7 @@ function SpotModal({ spot, onClose }: { spot: ParkingSpot; onClose: () => void }
               onClick={goHomeFromModal}
               className="rounded-2xl px-2 py-1 text-center text-sm font-black uppercase text-[#082743]"
             >
-              TLS! • The Last Spot
+              TLS! • TLS! • The Last Spot
             </button>
 
             <button
