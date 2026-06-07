@@ -1,1 +1,5 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><rect width="512" height="512" rx="96" fill="#082743"/><circle cx="256" cy="210" r="100" fill="#FFD33D"/><path d="M256 95c-70 0-126 55-126 123 0 92 126 210 126 210s126-118 126-210c0-68-56-123-126-123z" fill="#1697D6" stroke="#FFD33D" stroke-width="18"/><text x="256" y="250" text-anchor="middle" font-size="92" font-family="Arial" font-weight="900" fill="white">P</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="80" fill="white"/>
+<text x="120" y="300" font-size="180" font-family="Arial, sans-serif" font-weight="900" fill="#082743">TLS</text>
+<text x="400" y="300" font-size="220" font-family="Arial, sans-serif" font-weight="900" fill="#FFD33D">!</text>
+</svg>

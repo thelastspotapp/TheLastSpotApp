@@ -1,0 +1,7 @@
+V61.1A - TLS! Asset Takeover
+
+Primary brand: TLS!
+Company name: The Last Spot™
+
+Replaced primary logo asset with TLS! mark.
+Next step: wire logo asset into header, hero, phone mockup, favicon, and app icon references if not already using public/logo.svg.
