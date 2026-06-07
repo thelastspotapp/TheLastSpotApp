@@ -323,6 +323,12 @@ function UnifiedParkingHero() {
 function Logo({ small = false }: { small?: boolean }) {
   return (
     <div className="flex items-center gap-2">
+      <div className="leading-none">
+        <span className={`${small ? "text-3xl" : "text-6xl"} font-black text-[#082743]`}>TLS</span>
+        <span className={`${small ? "text-3xl" : "text-6xl"} font-black text-[#FFD33D]`}>!</span>
+        <div className="text-[10px] font-bold text-white">The Last Spot™</div>
+      </div>
+      <div className="hidden">
       <div className={`${small ? "h-10 w-10" : "h-16 w-16"} relative rounded-2xl border-[3px] border-[#082743] bg-gradient-to-br from-[#FFD33D] to-[#FF8A3D] shadow-[4px_4px_0_#082743]`}>
         <MapPin className={`${small ? "h-7 w-7" : "h-11 w-11"} absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#082743]`} />
         <span className="absolute left-1/2 top-[49%] -translate-x-1/2 -translate-y-1/2 text-xs font-black text-white">P</span>
@@ -331,6 +337,7 @@ function Logo({ small = false }: { small?: boolean }) {
         <p className={`${small ? "text-xs" : "text-sm"} font-black italic text-white drop-shadow-[2px_2px_0_#082743]`}>The</p>
         <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-white drop-shadow-[3px_3px_0_#082743]`}>Last</p>
         <p className={`${small ? "text-xl" : "text-4xl"} font-black uppercase text-[#FFD33D] drop-shadow-[3px_3px_0_#082743]`}>Spot</p>
+      </div>
       </div>
     </div>
   );
