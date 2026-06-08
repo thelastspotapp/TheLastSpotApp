@@ -155,7 +155,7 @@ function ShorePriceAIPanel() {
             </p>
 
             <h2 className="mt-2 text-4xl font-black text-[#082743] md:text-5xl">
-              Host Earnings
+              ShorePrice™ AI
             </h2>
 
             <p className="mt-4 max-w-3xl font-bold text-slate-700">
@@ -241,11 +241,12 @@ function UnifiedParkingHero() {
             </div>
 
             <h1 className="mt-6 max-w-3xl text-3xl md:text-5xl font-black leading-tight text-white lg:text-7xl">
-              Your Spot Is Waiting.
+              Find Parking Fast.
             </h1>
 
             <p className="mt-5 max-w-2xl text-lg font-bold text-slate-200">
-              Reserve trusted parking near the beach before you leave home.
+              Real-time parking availability, live demand zones, smart recommendations,
+              and premium shore parking all in one intelligent parking platform.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -254,16 +255,16 @@ function UnifiedParkingHero() {
               </button>
 
               <button className="rounded-full border-2 border-white/20 bg-white/10 px-8 py-4 text-lg font-black uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/20">
-                List Your Spot
+                Open Live Map
               </button>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
               {[
                 "Find!™",
-                "Trusted Hosts",
-                "Near The Beach",
-                "Reserve Before You Arrive",
+                "AI Guidance",
+                "Verified Parking",
+                "Fast Exit Routes",
               ].map((item) => (
                 <div
                   key={item}
@@ -356,14 +357,14 @@ function HostCenterCompactPanel() {
             <p className="text-sm font-black uppercase tracking-wide text-[#1697D6]">Host Center</p>
             <h2 className="mt-2 text-4xl font-black text-[#082743]">Turn Your Spot Into Income</h2>
             <p className="mt-3 max-w-2xl font-bold text-slate-700">
-              List your driveway, set availability, and use Host Earnings to make smarter pricing decisions during beach weekends and events.
+              List your driveway, set availability, and use ShorePrice™ AI to make smarter pricing decisions during beach weekends and events.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <a href="/earn" className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
                 List My Spot
               </a>
               <a href="#shoreprice-ai" className="rounded-full border-4 border-[#082743] bg-white px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
-                Host Earnings
+                ShorePrice™ AI
               </a>
             </div>
           </div>
@@ -388,133 +389,78 @@ function HostCenterCompactPanel() {
 
 
 function Nav() {
-  const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const desktopGroups: { title: string; items: [string, string][] }[] = [
-    {
-      title: "Explore",
-      items: [
-        ["Find Parking", "#interactive-map"],
-        ["Reserve Spot", "#reserve-now"],
-        ["Park", "#smart-checkout"],
-      ],
-    },
-    {
-      title: "Host",
-      items: [
-        ["Earn With Your Spot", "/earn"],
-        ["Host Center", "/earn"],
-      ],
-    },
-  ];
-
   const desktopLinks: [string, string][] = [
+    ["Find Parking", "#live-network"],
+    ["List Your Spot", "/earn"],
+    ["Community", "#community"],
     ["How It Works", "#how-it-works"],
     ["Contact", "#contact"],
   ];
 
   const mobileMenuItems: [string, string][] = [
-    ["🚗 Find Parking", "#interactive-map"],
-        ["💰 Earn With Your Spot", "/earn"],
+    ["🚗 Find Parking", "#live-network"],
+    ["🏠 List Your Spot", "/earn"],
+    ["🤝 Community", "#community"],
     ["❓ How It Works", "#how-it-works"],
     ["📞 Contact", "#contact"],
   ];
 
   return (
-    <>
-      <nav className="sticky top-0 z-[300] border-b-4 border-[#082743] bg-[#FFF8EB]/95 px-4 py-3 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center gap-3">
-          <a
-            href="#top"
-            className="shrink-0 rounded-2xl border-4 border-[#082743] bg-gradient-to-br from-[#1697D6] to-[#082743] px-3 py-2 shadow-[4px_4px_0_#082743]"
-          >
-            <Logo small />
-          </a>
+    <nav className="sticky top-0 z-[300] border-b-4 border-[#082743] bg-[#FFF8EB]/95 px-4 py-3 backdrop-blur">
+      <div className="mx-auto flex max-w-7xl items-center gap-3">
+        <a
+          href="#top"
+          className="shrink-0 rounded-2xl border-4 border-[#082743] bg-gradient-to-br from-[#1697D6] to-[#082743] px-3 py-2 shadow-[4px_4px_0_#082743]"
+        >
+          <Logo small />
+        </a>
 
-          <div className="hidden flex-1 items-center gap-3 whitespace-nowrap px-2 py-2 xl:flex">
-            {desktopGroups.map((group) => (
-              <div key={group.title} className="relative shrink-0">
-                <button
-                  type="button"
-                  onClick={() => setOpenGroup(openGroup === group.title ? null : group.title)}
-                  className="rounded-full border-2 border-[#082743] bg-white px-4 py-2 text-xs font-black uppercase text-[#082743] shadow-[2px_2px_0_#082743] transition hover:bg-[#FFD33D]"
-                >
-                  {group.title} ▾
-                </button>
-
-                {openGroup === group.title && (
-                  <div className="absolute left-0 top-full z-[9999] mt-3 min-w-[240px] rounded-3xl border-4 border-[#082743] bg-[#FFF8EB] p-3 shadow-[6px_6px_0_#082743]">
-                    <div className="grid gap-2">
-                      {group.items.map(([label, href]) => (
-                        <a
-                          key={label}
-                          href={href}
-                          onClick={() => setOpenGroup(null)}
-                          className="rounded-2xl bg-white px-4 py-3 text-sm font-black text-[#082743] shadow transition hover:bg-[#FFD33D]"
-                        >
-                          {label}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-
-            {desktopLinks.map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                className="rounded-full border-2 border-[#082743] bg-white px-4 py-2 text-xs font-black uppercase text-[#082743] shadow-[2px_2px_0_#082743] transition hover:bg-[#FFD33D]"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-
-          <a
-            href="#interactive-map"
-            className="ml-auto hidden shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] xl:inline-flex"
-          >
-            Get Started
-          </a>
-
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen((open) => !open)}
-            className="ml-auto rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] xl:hidden"
-            aria-label="Open mobile menu"
-          >
-            ☰ Menu
-          </button>
+        <div className="hidden flex-1 items-center gap-3 whitespace-nowrap px-2 py-2 xl:flex">
+          {desktopLinks.map(([label, href]) => (
+            <a
+              key={label}
+              href={href}
+              className="rounded-full border-2 border-[#082743] bg-white px-4 py-2 text-xs font-black uppercase text-[#082743] shadow-[2px_2px_0_#082743] transition hover:bg-[#FFD33D]"
+            >
+              {label}
+            </a>
+          ))}
         </div>
 
-        {mobileMenuOpen && (
-          <div className="absolute right-4 top-full z-[999] mt-2 grid w-[280px] gap-2 rounded-3xl border-4 border-[#082743] bg-white p-3 shadow-[5px_5px_0_#082743] xl:hidden">
-            {mobileMenuItems.map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="rounded-2xl bg-[#FFF3D6] px-4 py-3 text-base font-black text-[#082743] shadow transition hover:bg-[#FFD33D]"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-        )}
-      </nav>
+        <a
+          href="#live-network"
+          className="ml-auto hidden shrink-0 rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] xl:inline-flex"
+        >
+          Find Parking
+        </a>
 
-      {openGroup && (
         <button
           type="button"
-          aria-label="Close navigation menu"
-          onClick={() => setOpenGroup(null)}
-          className="fixed inset-0 z-[250] hidden bg-transparent xl:block"
-        />
+          onClick={() => setMobileMenuOpen((open) => !open)}
+          className="ml-auto rounded-xl border-4 border-[#082743] bg-[#FFD33D] px-4 py-3 text-sm font-black uppercase shadow-[3px_3px_0_#082743] xl:hidden"
+          aria-label="Open mobile menu"
+        >
+          ☰ Menu
+        </button>
+      </div>
+
+      {mobileMenuOpen && (
+        <div className="absolute right-4 top-full z-[999] mt-2 grid w-[280px] gap-2 rounded-3xl border-4 border-[#082743] bg-white p-3 shadow-[5px_5px_0_#082743] xl:hidden">
+          {mobileMenuItems.map(([label, href]) => (
+            <a
+              key={label}
+              href={href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="rounded-2xl bg-[#FFF3D6] px-4 py-3 text-base font-black text-[#082743] shadow transition hover:bg-[#FFD33D]"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
       )}
-    </>
+    </nav>
   );
 }
 
@@ -675,7 +621,7 @@ function SpotModal({ spot, onClose }: { spot: ParkingSpot; onClose: () => void }
               onClick={goHomeFromModal}
               className="rounded-2xl px-2 py-1 text-center text-sm font-black uppercase text-[#082743]"
             >
-              TLS! • TLS! • The Last Spot
+              The Last Spot™
             </button>
 
             <button
@@ -953,10 +899,10 @@ function PhonePreview({ spots, loading, selectedTown, setSelectedTown, onSpotCli
 
 function MobileQuickActions(){
   const actions = [
-    ["🔍", "Find", "#interactive-map", "bg-white"],
-    ["📍", "Reserve", "#reserve-now", "bg-white"],
-    ["💳", "Park", "#smart-checkout", "bg-white"],
-    ["💰", "Earn", "/earn", "bg-[#FFD33D]"],
+    ["🔍", "Find!", "#live-network", "bg-white"],
+    ["📍", "Reserve!", "#live-network", "bg-white"],
+    ["💳", "Park!", "#how-it-works", "bg-white"],
+    ["💰", "Earn!", "/earn", "bg-[#FFD33D]"],
   ];
 
   return (
@@ -1075,11 +1021,11 @@ function LiveActivityEnginePanel() {
           <div className="h-3 w-3 animate-pulse rounded-full bg-red-500" />
 
           <p className="text-sm font-black uppercase tracking-wide text-[#082743]">
-            Live Parking Marketplace
+            Live Parking Network™
           </p>
 
           <div className="rounded-full bg-[#082743] px-3 py-1 text-[10px] font-black uppercase text-white">
-            Live Spots
+            Live Inventory
           </div>
         </div>
 
@@ -1163,21 +1109,20 @@ function InteractiveParkingMapPanel() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-black uppercase text-[#1697D6]">
-              Phase 41
+              Live Parking Network™
             </p>
 
             <h2 className="text-3xl md:text-5xl font-black text-[#082743]">
-              Interactive Live Parking Map
+              Find trusted shore parking before you arrive.
             </h2>
 
             <p className="mt-4 max-w-3xl font-bold text-slate-700">
-              Explore live parking activity, demand heat zones, and real-time
-              availability through an intelligent interactive parking network.
+              See nearby availability, demand zones, and trusted parking options across Ocean City and Cape May.
             </p>
           </div>
 
           <div className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-3 text-sm font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
-            Live Map Active
+            Live Network Active
           </div>
         </div>
 
@@ -1225,7 +1170,7 @@ function InteractiveParkingMapPanel() {
                   key={label}
                   className="rounded-2xl border-2 border-[#082743] bg-white/90 p-3 backdrop-blur"
                 >
-                  <div className="hidden md:flex items-center gap-3">
+                  <div className="flex items-center gap-3">
                     <div
                       className={`h-4 w-4 rounded-full ${
                         color === "Green"
@@ -1256,7 +1201,7 @@ function InteractiveParkingMapPanel() {
           <div className="grid gap-5">
             <div className="rounded-[2rem] border-4 border-[#082743] bg-[#082743] p-6 text-white">
               <p className="text-2xl font-black">
-                Smart Zone Intelligence
+                Parking Confidence
               </p>
 
               <div className="mt-5 grid gap-3">
@@ -1279,7 +1224,7 @@ function InteractiveParkingMapPanel() {
 
             <div className="rounded-[2rem] border-4 border-[#082743] bg-[#FFD33D] p-6 text-[#082743]">
               <p className="text-2xl font-black">
-                Real-Time Marketplace
+                Real-Time Availability
               </p>
 
               <p className="mt-4 font-bold">
@@ -1290,12 +1235,11 @@ function InteractiveParkingMapPanel() {
 
             <div className="rounded-[2rem] border-4 border-[#082743] bg-[#1697D6] p-6 text-white">
               <p className="text-2xl font-black">
-                AI Navigation Layer
+                Coming Soon: The ! Assistant
               </p>
 
               <p className="mt-4 font-bold text-slate-100">
-                Future-ready foundation for predictive parking routing,
-                intelligent recommendations, and smart city integrations.
+                Future-ready guidance for parking questions, hosting help, support, and local shore recommendations.
               </p>
             </div>
           </div>
@@ -5725,40 +5669,22 @@ async function saveProfile() {
           {adminMessage}
         </div>
       )}
+
       <section className="relative overflow-hidden px-5 py-10 md:py-16">
-        <div className="absolute right-10 top-8 h-72 w-72 rounded-full bg-[#FFB22C] opacity-70 blur-3xl" />
-        <div className="absolute left-0 top-24 h-72 w-72 rounded-full bg-[#1697D6] opacity-30 blur-3xl" />
+        <div className="absolute right-10 top-8 h-72 w-72 rounded-full bg-[#FFB22C] opacity-60 blur-3xl" />
+        <div className="absolute left-0 top-24 h-72 w-72 rounded-full bg-[#1697D6] opacity-25 blur-3xl" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
           <div className="space-y-7 text-center lg:text-left">
             <div className="mx-auto inline-flex rounded-[2rem] border-[5px] border-[#082743] bg-gradient-to-br from-[#1697D6] to-[#0C6FA3] p-6 shadow-[10px_10px_0_#082743] lg:mx-0"><Logo /></div>
-            <div className="inline-flex items-center gap-2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-2 shadow-[5px_5px_0_#082743]"><span>🏖️</span><span className="font-black uppercase">{usingLiveData ? "Live database connected" : "Demo fallback mode"}</span></div>
-            <h1 className="text-3xl md:text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl">Find Your Spot. <span className="text-[#1697D6]">Enjoy The Shore.</span></h1>
-            <p className="max-w-2xl text-xl font-black uppercase text-[#F46036] md:text-2xl">Less Searching. More Enjoying.™</p>
-            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#interactive-map" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="/earn" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
+            <div className="inline-flex items-center gap-2 rounded-full border-4 border-[#082743] bg-[#FFD33D] px-5 py-2 shadow-[5px_5px_0_#082743]"><span>🏖️</span><span className="font-black uppercase">Live Parking Network™</span></div>
+            <h1 className="text-4xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl">Your Spot Is Waiting.</h1>
+            <p className="max-w-2xl text-lg font-black text-slate-700 md:text-2xl">Reserve trusted parking near the beach before you leave home.</p>
+            <p className="max-w-2xl text-lg font-black uppercase text-[#F46036] md:text-2xl">Less Searching. More Enjoying.™</p>
+            <div className="flex flex-wrap justify-center gap-3 lg:justify-start"><a href="#live-network" className="rounded-2xl border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">Find Parking</a><a href="/earn" className="rounded-2xl border-4 border-[#082743] bg-white px-6 py-4 font-black uppercase shadow-[5px_5px_0_#082743]">List Your Spot</a></div>
           </div>
           <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}><PhonePreview spots={spots} loading={loading} selectedTown={selectedTown} setSelectedTown={setSelectedTown} onSpotClick={setSelectedSpot} onMenuClick={() => setMobileMenuOpen(true)} onNotificationsClick={() => setNotificationsOpen(true)} /></motion.div>
         </div>
       </section>
-
-      <LiveActivityEnginePanel />
-
-      <InteractiveParkingMapPanel />
-
-      <InstantReservationFlowPanel />
-
-      <SmartParkExperiencePanel />
-
-      <HostCenterCompactPanel />
-
-      <ShorePriceAIPanel />
-
-      <section className="mx-auto max-w-7xl px-5 py-8 pb-28">
-        <div className="rounded-[2rem] border-4 border-[#082743] bg-[#082743] p-6 text-center text-white shadow-[8px_8px_0_#082743]">
-          <p className="text-3xl font-black">The Last Spot™</p>
-          <p className="mt-2 text-lg font-black text-[#FFD33D]">Less Searching. More Enjoying.™</p>
-        </div>
-      </section>
-    
 
       <section id="how-it-works" className="mx-auto max-w-7xl px-5 py-8">
         <div className="rounded-[2rem] border-4 border-[#082743] bg-white p-6 shadow-[6px_6px_0_#082743]">
@@ -5766,31 +5692,80 @@ async function saveProfile() {
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl bg-[#FFF3D6] p-5">
               <p className="text-sm font-black uppercase text-[#1697D6]">Drivers</p>
-              <p className="mt-2 text-2xl font-black">Find → Reserve → Park</p>
+              <p className="mt-2 text-2xl font-black">Find!™ → Reserve!™ → Park!™</p>
             </div>
             <div className="rounded-2xl bg-[#FFF3D6] p-5">
               <p className="text-sm font-black uppercase text-[#1697D6]">Hosts</p>
-              <p className="mt-2 text-2xl font-black">List → Price → Earn</p>
+              <p className="mt-2 text-2xl font-black">List!™ → Price!™ → Earn!™</p>
             </div>
           </div>
         </div>
       </section>
 
+      <div id="live-network">
+        <LiveActivityEnginePanel />
+      </div>
+
+      <InteractiveParkingMapPanel />
+
+      <section id="featured-spots" className="mx-auto max-w-7xl px-5 py-8">
+        <div className="rounded-[2.5rem] border-4 border-[#082743] bg-white p-6 shadow-[8px_8px_0_#082743] md:p-8">
+          <p className="text-sm font-black uppercase text-[#1697D6]">Trusted Shore Parking</p>
+          <h2 className="mt-2 text-4xl font-black text-[#082743] md:text-5xl">Featured spots near the shore.</h2>
+          <p className="mt-3 max-w-3xl font-bold text-slate-700">Clear prices, trusted hosts, and simple reservations before you arrive.</p>
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {spots.slice(0, 3).map((spot) => (
+              <button key={`${spot.title}-${spot.town}`} type="button" onClick={() => setSelectedSpot(spot)} className="overflow-hidden rounded-[2rem] border-4 border-[#082743] bg-[#F9FBFD] text-left shadow transition hover:-translate-y-1 hover:shadow-[6px_6px_0_#082743]">
+                <img src={spot.image_url || fallbackSpots[0].image_url!} alt={spot.title} className="h-36 w-full object-cover" />
+                <div className="p-5">
+                  <p className="text-2xl font-black text-[#082743]">{spot.title}</p>
+                  <p className="mt-1 text-sm font-bold text-slate-600">{spot.town} • Tap to reserve</p>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="rounded-full bg-[#FFF3D6] px-3 py-2 text-xs font-black uppercase text-[#082743]">Verified Spot™</span>
+                    <span className="text-3xl font-black text-[#082743]">${spot.price}<span className="text-sm">/day</span></span>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <HostCenterCompactPanel />
+
+      <section id="community" className="mx-auto max-w-7xl px-5 py-8">
+        <div className="rounded-[2.5rem] border-4 border-[#082743] bg-[#FFF3D6] p-6 shadow-[8px_8px_0_#082743] md:p-8">
+          <p className="text-sm font-black uppercase text-[#1697D6]">Community</p>
+          <h2 className="mt-2 text-4xl font-black text-[#082743] md:text-5xl">Built for shore towns, hosts, and local partners.</h2>
+          <p className="mt-4 max-w-3xl font-bold text-slate-700">The Last Spot™ helps drivers, homeowners, businesses, churches, and community organizations unlock trusted parking across the Jersey Shore.</p>
+          <div className="mt-7 grid gap-4 md:grid-cols-3">
+            {[["🏠", "Residential Hosts", "Driveways, pads, and private spots."], ["⛪", "Community Partners", "Churches, nonprofits, and local organizations."], ["🏢", "Local Businesses", "Commercial inventory and event parking."]].map(([icon, title, desc]) => (
+              <div key={title} className="rounded-2xl border-4 border-[#082743] bg-white p-5 shadow">
+                <p className="text-3xl">{icon}</p>
+                <p className="mt-3 text-2xl font-black text-[#082743]">{title}</p>
+                <p className="mt-2 font-bold text-slate-600">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section id="contact" className="mx-auto max-w-7xl px-5 py-8">
         <div className="rounded-[2rem] border-4 border-[#082743] bg-[#082743] p-6 text-white shadow-[6px_6px_0_#1697D6]">
-          <h2 className="text-4xl font-black">Contact The Last Spot</h2>
-          <p className="mt-3 font-bold text-white/80">
-            Questions about hosting, partnerships, Ocean City, Cape May, or launch opportunities?
-          </p>
-          <a
-            href="mailto:ladd.ryan7@gmail.com"
-            className="mt-5 inline-block rounded-full border-4 border-white bg-[#FFD33D] px-6 py-4 font-black uppercase text-[#082743] shadow-[4px_4px_0_#1697D6]"
-          >
-            Contact Us
-          </a>
+          <h2 className="text-4xl font-black">Contact The Last Spot™</h2>
+          <p className="mt-3 font-bold text-white/80">Questions about hosting, partnerships, Ocean City, Cape May, or launch opportunities?</p>
+          <a href="mailto:ladd.ryan7@gmail.com" className="mt-5 inline-block rounded-full border-4 border-white bg-[#FFD33D] px-6 py-4 font-black uppercase text-[#082743] shadow-[4px_4px_0_#1697D6]">Contact Us</a>
         </div>
       </section>
+
+      <footer className="mx-auto max-w-7xl px-5 py-10 pb-32">
+        <div className="rounded-[2.5rem] border-4 border-[#082743] bg-[#082743] p-8 text-center text-white shadow-[8px_8px_0_#082743]">
+          <p className="text-4xl font-black">The Last Spot™</p>
+          <p className="mt-2 text-xl font-black text-[#FFD33D]">Less Searching. More Enjoying.™</p>
+          <p className="mx-auto mt-4 max-w-2xl font-bold text-white/80">Connecting drivers, homeowners, businesses, and communities across the Jersey Shore.</p>
+          <p className="mt-5 text-sm font-black uppercase tracking-wide text-white/70">Ocean City • Cape May • More Coming Soon</p>
+        </div>
+      </footer>
 
 
 <MobileQuickActions />
