@@ -237,7 +237,7 @@ function UnifiedParkingHero() {
           <div>
             <div className="inline-flex items-center gap-3 rounded-full border-2 border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-wide text-white backdrop-blur">
               <div className="h-2 w-2 animate-pulse rounded-full bg-[#FFD33D]" />
-              Live Shore Parking Network
+              Live Parking Network™
             </div>
 
             <h1 className="mt-6 max-w-3xl text-3xl md:text-5xl font-black leading-tight text-white lg:text-7xl">
@@ -251,7 +251,7 @@ function UnifiedParkingHero() {
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <button className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-8 py-4 text-lg font-black uppercase tracking-wide text-[#082743] shadow-[5px_5px_0_#021524] transition hover:-translate-y-1">
-                Find Parking Now
+                Find!™
               </button>
 
               <button className="rounded-full border-2 border-white/20 bg-white/10 px-8 py-4 text-lg font-black uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/20">
@@ -261,7 +261,7 @@ function UnifiedParkingHero() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               {[
-                "Live Availability",
+                "Find!™",
                 "AI Guidance",
                 "Verified Parking",
                 "Fast Exit Routes",
