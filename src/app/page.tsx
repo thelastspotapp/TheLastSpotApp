@@ -155,7 +155,7 @@ function ShorePriceAIPanel() {
             </p>
 
             <h2 className="mt-2 text-4xl font-black text-[#082743] md:text-5xl">
-              ShorePrice™ AI
+              Host Earnings
             </h2>
 
             <p className="mt-4 max-w-3xl font-bold text-slate-700">
@@ -241,12 +241,11 @@ function UnifiedParkingHero() {
             </div>
 
             <h1 className="mt-6 max-w-3xl text-3xl md:text-5xl font-black leading-tight text-white lg:text-7xl">
-              Find Parking Fast.
+              Your Spot Is Waiting.
             </h1>
 
             <p className="mt-5 max-w-2xl text-lg font-bold text-slate-200">
-              Real-time parking availability, live demand zones, smart recommendations,
-              and premium shore parking all in one intelligent parking platform.
+              Reserve trusted parking near the beach before you leave home.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -255,16 +254,16 @@ function UnifiedParkingHero() {
               </button>
 
               <button className="rounded-full border-2 border-white/20 bg-white/10 px-8 py-4 text-lg font-black uppercase tracking-wide text-white backdrop-blur transition hover:bg-white/20">
-                Open Live Map
+                List Your Spot
               </button>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
               {[
                 "Find!™",
-                "AI Guidance",
-                "Verified Parking",
-                "Fast Exit Routes",
+                "Trusted Hosts",
+                "Near The Beach",
+                "Reserve Before You Arrive",
               ].map((item) => (
                 <div
                   key={item}
@@ -357,14 +356,14 @@ function HostCenterCompactPanel() {
             <p className="text-sm font-black uppercase tracking-wide text-[#1697D6]">Host Center</p>
             <h2 className="mt-2 text-4xl font-black text-[#082743]">Turn Your Spot Into Income</h2>
             <p className="mt-3 max-w-2xl font-bold text-slate-700">
-              List your driveway, set availability, and use ShorePrice™ AI to make smarter pricing decisions during beach weekends and events.
+              List your driveway, set availability, and use Host Earnings to make smarter pricing decisions during beach weekends and events.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <a href="/earn" className="rounded-full border-4 border-[#082743] bg-[#FFD33D] px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
                 List My Spot
               </a>
               <a href="#shoreprice-ai" className="rounded-full border-4 border-[#082743] bg-white px-6 py-4 text-center font-black uppercase text-[#082743] shadow-[4px_4px_0_#082743]">
-                ShorePrice™ AI
+                Host Earnings
               </a>
             </div>
           </div>
