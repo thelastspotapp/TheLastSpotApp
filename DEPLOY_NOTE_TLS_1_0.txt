@@ -1,0 +1,12 @@
+The Last Spot™ 1.0 Launch Edition
+
+Homepage rebuilt for July 1, 2026 launch.
+- Premium customer-first hero
+- Live Shore Network™ with ticker preserved
+- Simple How It Works
+- Featured Spots
+- Condensed Host section
+- Trust section
+- Premium footer
+- Yellow ! assistant placeholder
+- Removed MVP/Phase/AI homepage clutter and empty pills

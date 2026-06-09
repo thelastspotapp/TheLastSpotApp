@@ -25,3 +25,14 @@ img {
   max-width: 100%;
 }
 
+
+@keyframes tlsTicker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: tlsTicker 38s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
