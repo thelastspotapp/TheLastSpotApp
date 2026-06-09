@@ -1,0 +1,5 @@
+V63.4 deploy package note:
+- package-lock.json has been rewritten to use the public npm registry, not the sandbox/internal registry.
+- .npmrc forces registry=https://registry.npmjs.org/
+- vercel.json forces npm install with public registry and legacy peer deps.
+- If GitHub upload does not delete old files, make sure the previous package-lock.json is replaced by this one.
