@@ -112,6 +112,7 @@ function TrustItem({ icon: Icon, title, copy }: { icon: typeof ShieldCheck; titl
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedSpot, setSelectedSpot] = useState<(typeof featuredSpots)[number] | null>(null);
+  const [helpOpen, setHelpOpen] = useState(false);
 
   const navItems = [
     ["Find Parking", "#find"],
@@ -371,7 +372,7 @@ export default function HomePage() {
         </div>
       </SectionShell>
 
-      <button className="fixed bottom-5 right-5 z-40 grid h-16 w-16 place-items-center rounded-full bg-[#FFD33D] text-4xl font-black text-[#082743] shadow-[0_16px_40px_rgba(8,39,67,.28)] ring-4 ring-white" aria-label="Need help">
+      <button onClick={() => setHelpOpen(true)} className="fixed bottom-5 right-5 z-40 grid h-16 w-16 place-items-center rounded-full bg-[#FFD33D] text-4xl font-black text-[#082743] shadow-[0_16px_40px_rgba(8,39,67,.28)] ring-4 ring-white transition hover:-translate-y-1" aria-label="Open The Last Spot helper">
         !
       </button>
 
@@ -392,6 +393,29 @@ export default function HomePage() {
         <div className="mx-auto mt-10 max-w-7xl border-t border-white/15 pt-6 text-sm font-bold text-white/50">© The Last Spot™. All rights reserved.</div>
       </footer>
 
+
+      {helpOpen && (
+        <div className="fixed inset-0 z-[90] grid place-items-end bg-[#082743]/55 p-4 backdrop-blur-sm sm:place-items-end">
+          <div className="w-full max-w-sm rounded-[2rem] bg-white p-6 shadow-[0_30px_90px_rgba(0,0,0,.28)] ring-1 ring-[#DCEBF2]">
+            <div className="mb-5 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="grid h-12 w-12 place-items-center rounded-full bg-[#FFD33D] text-3xl font-black text-[#082743]">!</div>
+                <div>
+                  <h2 className="text-2xl font-black text-[#082743]">Need a hand?</h2>
+                  <p className="text-sm font-black uppercase tracking-wide text-[#1697D6]">The Last Spot helper</p>
+                </div>
+              </div>
+              <button onClick={() => setHelpOpen(false)} className="grid h-10 w-10 place-items-center rounded-full bg-[#FF8A3D] text-white" aria-label="Close helper"><X size={20} /></button>
+            </div>
+            <div className="grid gap-3">
+              <a onClick={() => setHelpOpen(false)} href="#find" className="rounded-2xl bg-[#FFF4D8] px-5 py-4 text-lg font-black text-[#082743]">Find parking near the shore</a>
+              <a onClick={() => setHelpOpen(false)} href="#host" className="rounded-2xl bg-[#F5FBFF] px-5 py-4 text-lg font-black text-[#082743]">List my spot</a>
+              <a onClick={() => setHelpOpen(false)} href="mailto:hello@thelastspotapp.com" className="rounded-2xl bg-[#082743] px-5 py-4 text-lg font-black text-white">Contact The Last Spot</a>
+            </div>
+          </div>
+        </div>
+      )}
+
       {selectedSpot && (
         <div className="fixed inset-0 z-[80] grid place-items-center bg-[#082743]/75 p-4 backdrop-blur-sm">
           <div className="max-h-[90vh] w-full max-w-xl overflow-auto rounded-[2rem] bg-white p-6 shadow-[0_30px_90px_rgba(0,0,0,.28)]">
@@ -410,11 +434,15 @@ export default function HomePage() {
               <input className="rounded-2xl border border-[#DCEBF2] bg-[#F8FCFD] px-4 py-4 text-lg font-bold outline-none focus:ring-2 focus:ring-[#1697D6]" placeholder="Email" />
               <input className="rounded-2xl border border-[#DCEBF2] bg-[#F8FCFD] px-4 py-4 text-lg font-bold outline-none focus:ring-2 focus:ring-[#1697D6]" placeholder="Requested date" />
               <select className="rounded-2xl border border-[#DCEBF2] bg-[#F8FCFD] px-4 py-4 text-lg font-bold outline-none focus:ring-2 focus:ring-[#1697D6]">
+                <option>1 hour</option>
                 <option>2 hours</option>
+                <option>3 hours</option>
+                <option>4 hours</option>
                 <option>Half day</option>
                 <option>Full day</option>
+                <option>Event parking</option>
               </select>
-              <button className="rounded-full bg-[#FFD33D] px-8 py-4 text-lg font-black uppercase text-[#082743] shadow-[0_14px_30px_rgba(255,211,61,.35)]">Complete Reservation</button>
+              <button className="rounded-full bg-[#FFD33D] px-8 py-4 text-lg font-black uppercase text-[#082743] shadow-[0_14px_30px_rgba(255,211,61,.35)]">Complete Reservation!</button>
             </div>
           </div>
         </div>
