@@ -128,93 +128,125 @@ function SpotMark({
 }) {
   const config = {
     button: {
-      wrap: "h-[132px] w-[78px]",
-      body: "h-[100px] w-[70px]",
-      inner: "inset-[6px]",
-      dot: "h-[26px] w-[26px] mt-[6px] ring-[5px]",
-      letters: "gap-[5px] pt-[12px]",
-      s: "text-[26px] leading-[22px]",
-      p: "text-[23px] leading-[20px]",
-      o: "text-[21px] leading-[18px]",
-      t: "text-[19px] leading-[16px]",
-      glow: "shadow-[0_18px_42px_rgba(8,39,67,.26)]",
-      shine: "h-12 w-5 left-[13px] top-[9px]",
+      wrap: "h-[142px] w-[82px]",
+      viewBox: "0 0 82 142",
+      letterClass: "text-[26px]",
+      bodyPath:
+        "M41 7 C57 7 69 18 70 34 C71 52 67 79 62 101 C59 118 50 126 41 126 C32 126 23 118 20 101 C15 79 11 52 12 34 C13 18 25 7 41 7 Z",
+      dotCx: 41,
+      dotCy: 134,
+      dotR: 11,
+      ys: [35, 61, 87, 111],
+      stroke: 7,
     },
     panel: {
-      wrap: "h-[76px] w-[46px]",
-      body: "h-[58px] w-[40px]",
-      inner: "inset-[4px]",
-      dot: "h-[14px] w-[14px] mt-[4px] ring-[3px]",
-      letters: "gap-[2px] pt-[7px]",
-      s: "text-[15px] leading-[13px]",
-      p: "text-[13px] leading-[11px]",
-      o: "text-[12px] leading-[10px]",
-      t: "text-[10px] leading-[8px]",
-      glow: "shadow-[0_12px_28px_rgba(8,39,67,.20)]",
-      shine: "h-7 w-3 left-[8px] top-[6px]",
+      wrap: "h-[86px] w-[50px]",
+      viewBox: "0 0 82 142",
+      letterClass: "text-[25px]",
+      bodyPath:
+        "M41 7 C57 7 69 18 70 34 C71 52 67 79 62 101 C59 118 50 126 41 126 C32 126 23 118 20 101 C15 79 11 52 12 34 C13 18 25 7 41 7 Z",
+      dotCx: 41,
+      dotCy: 134,
+      dotR: 11,
+      ys: [35, 61, 87, 111],
+      stroke: 7,
     },
     logo: {
-      wrap: "h-[50px] w-[32px] shrink-0",
-      body: "h-[39px] w-[28px]",
-      inner: "inset-[3px]",
-      dot: "h-[8px] w-[8px] mt-[3px] ring-[2px]",
-      letters: "gap-[1px] pt-[4px]",
-      s: "text-[10px] leading-[8px]",
-      p: "text-[9px] leading-[7px]",
-      o: "text-[8px] leading-[7px]",
-      t: "text-[7px] leading-[6px]",
-      glow: "shadow-[0_8px_18px_rgba(8,39,67,.18)]",
-      shine: "h-5 w-2 left-[5px] top-[4px]",
+      wrap: "h-[52px] w-[31px] shrink-0",
+      viewBox: "0 0 82 142",
+      letterClass: "text-[25px]",
+      bodyPath:
+        "M41 7 C57 7 69 18 70 34 C71 52 67 79 62 101 C59 118 50 126 41 126 C32 126 23 118 20 101 C15 79 11 52 12 34 C13 18 25 7 41 7 Z",
+      dotCx: 41,
+      dotCy: 134,
+      dotR: 11,
+      ys: [35, 61, 87, 111],
+      stroke: 7,
     },
     mini: {
-      wrap: "h-[34px] w-[22px] shrink-0",
-      body: "h-[27px] w-[19px]",
-      inner: "inset-[2px]",
-      dot: "h-[6px] w-[6px] mt-[2px] ring-[1px]",
-      letters: "gap-[0px] pt-[3px]",
-      s: "text-[7px] leading-[6px]",
-      p: "text-[6px] leading-[5px]",
-      o: "text-[5px] leading-[4px]",
-      t: "text-[4px] leading-[4px]",
-      glow: "shadow-[0_6px_12px_rgba(8,39,67,.16)]",
-      shine: "h-3 w-1.5 left-[4px] top-[3px]",
+      wrap: "h-[38px] w-[23px] shrink-0",
+      viewBox: "0 0 82 142",
+      letterClass: "text-[25px]",
+      bodyPath:
+        "M41 7 C57 7 69 18 70 34 C71 52 67 79 62 101 C59 118 50 126 41 126 C32 126 23 118 20 101 C15 79 11 52 12 34 C13 18 25 7 41 7 Z",
+      dotCx: 41,
+      dotCy: 134,
+      dotR: 11,
+      ys: [35, 61, 87, 111],
+      stroke: 7,
     },
   }[size];
 
-  const exclamationShape = {
-    clipPath:
-      "polygon(50% 0%, 76% 4%, 91% 18%, 86% 63%, 73% 84%, 59% 96%, 50% 100%, 41% 96%, 27% 84%, 14% 63%, 9% 18%, 24% 4%)",
-  };
+  const letters = ["S", "P", "O", "T"];
 
   return (
-    <div
-      className={`relative flex ${config.wrap} flex-col items-center justify-start`}
-      aria-hidden="true"
-    >
-      <div
-        className={`relative ${config.body} bg-white ${config.glow}`}
-        style={exclamationShape}
+    <div className={`relative ${config.wrap}`} aria-hidden="true">
+      <svg
+        viewBox={config.viewBox}
+        className="h-full w-full overflow-visible drop-shadow-[0_14px_26px_rgba(8,39,67,.24)]"
+        role="img"
       >
-        <div
-          className={`absolute ${config.inner} overflow-hidden bg-gradient-to-br from-[#FFE66D] via-[#FFD33D] to-[#F5B800]`}
-          style={exclamationShape}
-        >
-          <div className={`absolute ${config.shine} rotate-[22deg] rounded-full bg-white/55 blur-[1px]`} />
-          <div className="absolute -right-5 top-6 h-20 w-7 rotate-[-8deg] rounded-full bg-[#E8A900]/18 blur-sm" />
-          <div className="absolute inset-x-[18%] bottom-[7%] h-[14%] rounded-full bg-[#E8A900]/18 blur-sm" />
-          <div
-            className={`relative z-10 flex h-full flex-col items-center justify-center font-black tracking-[-0.04em] text-[#082743] ${config.letters}`}
+        <defs>
+          <linearGradient id={`spotGradient-${size}`} x1="18" y1="8" x2="64" y2="124" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stopColor="#FFE66D" />
+            <stop offset="0.52" stopColor="#FFD33D" />
+            <stop offset="1" stopColor="#F5B800" />
+          </linearGradient>
+          <radialGradient id={`spotGlow-${size}`} cx="35%" cy="18%" r="72%">
+            <stop offset="0" stopColor="#FFF7B8" stopOpacity="0.95" />
+            <stop offset="0.55" stopColor="#FFD33D" stopOpacity="0.35" />
+            <stop offset="1" stopColor="#F5B800" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        <path
+          d={config.bodyPath}
+          fill={`url(#spotGradient-${size})`}
+          stroke="#FFFFFF"
+          strokeWidth={config.stroke}
+          strokeLinejoin="round"
+        />
+        <path d={config.bodyPath} fill={`url(#spotGlow-${size})`} opacity="0.75" />
+        <path
+          d="M26 24 C32 18 40 16 48 17"
+          fill="none"
+          stroke="#FFFFFF"
+          strokeWidth="5"
+          strokeLinecap="round"
+          opacity="0.65"
+        />
+        <path
+          d="M55 25 C62 45 60 77 55 101"
+          fill="none"
+          stroke="#E8AD00"
+          strokeWidth="5"
+          strokeLinecap="round"
+          opacity="0.2"
+        />
+
+        {letters.map((letter, index) => (
+          <text
+            key={letter}
+            x="41"
+            y={config.ys[index]}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            className={`fill-[#082743] font-black ${config.letterClass}`}
+            style={{ fontFamily: "Arial Black, Arial, sans-serif" }}
           >
-            <span className={config.s}>S</span>
-            <span className={config.p}>P</span>
-            <span className={config.o}>O</span>
-            <span className={config.t}>T</span>
-          </div>
-        </div>
-      </div>
-      <span
-        className={`${config.dot} rounded-full bg-black shadow-[0_8px_18px_rgba(8,39,67,.28)] ring-white`}
-      />
+            {letter}
+          </text>
+        ))}
+
+        <circle
+          cx={config.dotCx}
+          cy={config.dotCy}
+          r={config.dotR}
+          fill="#050505"
+          stroke="#FFFFFF"
+          strokeWidth="6"
+        />
+      </svg>
     </div>
   );
 }
@@ -273,7 +305,7 @@ export default function HomePage() {
           }
         }
         .spot-pulse {
-          animation: spotPulse 7.8s ease-in-out infinite;
+          animation: spotPulse 4.6s ease-in-out infinite;
         }
         .spot-pulse:hover {
           animation-play-state: paused;
