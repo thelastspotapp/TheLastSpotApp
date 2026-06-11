@@ -98,50 +98,50 @@ function SectionShell({ children, id, className = "" }: { children: React.ReactN
 
 function SpotMark({ size = "button" }: { size?: "button" | "panel" | "logo" | "mini" }) {
   const shellSize = {
-    button: "h-16 w-16",
-    panel: "h-12 w-12",
-    logo: "h-12 w-12 shrink-0 rounded-2xl",
-    mini: "h-7 w-7",
+    button: "h-16 w-16 rounded-full",
+    panel: "h-12 w-12 rounded-full",
+    logo: "h-10 w-10 shrink-0 rounded-full sm:h-11 sm:w-11",
+    mini: "h-6 w-6 rounded-full",
   }[size];
 
   const letterStyles = {
     button: {
-      wrap: "-mt-0.5",
-      s: "text-[23px] leading-[17px]",
-      p: "text-[20px] leading-[15px]",
-      o: "text-[17px] leading-[13px]",
-      t: "text-[14px] leading-[11px]",
-      dot: "mt-1 h-2.5 w-2.5",
+      wrap: "gap-[1px]",
+      s: "text-[20px] leading-[16px]",
+      p: "text-[17px] leading-[14px]",
+      o: "text-[15px] leading-[12px]",
+      t: "text-[13px] leading-[11px]",
+      dot: "mt-[3px] h-2.5 w-2.5",
+      ring: "ring-4",
+      inner: "inset-[7px]",
+    },
+    panel: {
+      wrap: "gap-[1px]",
+      s: "text-[15px] leading-[12px]",
+      p: "text-[13px] leading-[11px]",
+      o: "text-[12px] leading-[10px]",
+      t: "text-[10px] leading-[9px]",
+      dot: "mt-[2px] h-2 w-2",
       ring: "ring-4",
       inner: "inset-[6px]",
     },
-    panel: {
-      wrap: "-mt-0.5",
-      s: "text-[18px] leading-[14px]",
-      p: "text-[16px] leading-[12px]",
-      o: "text-[13px] leading-[10px]",
-      t: "text-[11px] leading-[9px]",
-      dot: "mt-0.5 h-2 w-2",
-      ring: "ring-4",
-      inner: "inset-[5px]",
-    },
     logo: {
-      wrap: "-mt-0.5",
-      s: "text-[17px] leading-[13px]",
-      p: "text-[15px] leading-[11px]",
-      o: "text-[12px] leading-[9px]",
-      t: "text-[10px] leading-[8px]",
-      dot: "mt-0.5 h-2 w-2",
+      wrap: "gap-[1px]",
+      s: "text-[13px] leading-[10px]",
+      p: "text-[12px] leading-[9px]",
+      o: "text-[10px] leading-[8px]",
+      t: "text-[9px] leading-[7px]",
+      dot: "mt-[2px] h-1.5 w-1.5",
       ring: "ring-4",
       inner: "inset-[5px]",
     },
     mini: {
-      wrap: "-mt-[1px]",
-      s: "text-[10px] leading-[8px]",
-      p: "text-[9px] leading-[7px]",
-      o: "text-[8px] leading-[6px]",
-      t: "text-[7px] leading-[5px]",
-      dot: "mt-[2px] h-1.5 w-1.5",
+      wrap: "gap-[0px]",
+      s: "text-[8px] leading-[7px]",
+      p: "text-[7px] leading-[6px]",
+      o: "text-[6px] leading-[5px]",
+      t: "text-[5px] leading-[4px]",
+      dot: "mt-[1px] h-1 w-1",
       ring: "ring-2",
       inner: "inset-[3px]",
     },
@@ -149,12 +149,12 @@ function SpotMark({ size = "button" }: { size?: "button" | "panel" | "logo" | "m
 
   return (
     <div
-      className={`relative grid ${shellSize} place-items-center overflow-hidden bg-gradient-to-br from-[#FFE66D] via-[#FFD33D] to-[#F5B800] text-[#082743] shadow-[0_16px_40px_rgba(8,39,67,.25)] ${letterStyles.ring} ring-white`}
+      className={`relative grid ${shellSize} place-items-center overflow-hidden bg-gradient-to-br from-[#FFE66D] via-[#FFD33D] to-[#F5B800] text-[#082743] shadow-[0_14px_34px_rgba(8,39,67,.22)] ${letterStyles.ring} ring-white`}
       aria-hidden="true"
     >
       <div className={`absolute ${letterStyles.inner} rounded-full border border-white/35`} />
       <div className="absolute -left-3 -top-5 h-10 w-16 rotate-[-20deg] rounded-full bg-white/25 blur-sm" />
-      <div className={`relative flex flex-col items-center font-black tracking-[-0.04em] text-[#082743] ${letterStyles.wrap}`}>
+      <div className={`relative flex flex-col items-center justify-center font-black tracking-[-0.03em] text-[#082743] ${letterStyles.wrap}`}>
         <span className={letterStyles.s}>S</span>
         <span className={letterStyles.p}>P</span>
         <span className={letterStyles.o}>O</span>
@@ -275,8 +275,7 @@ export default function HomePage() {
             </div>
             <div className="rounded-[2.4rem] bg-[#082743] p-4 shadow-[0_30px_90px_rgba(8,39,67,.28)]">
               <div className="rounded-[2rem] bg-[#F5FBFF] p-5">
-                <div className="mb-5 flex items-center justify-between">
-                  <BrandMark compact />
+                <div className="mb-5 flex items-center justify-end">
                   <span className="rounded-full bg-[#FFD33D] px-4 py-2 text-xs font-black uppercase">Ocean City</span>
                 </div>
                 <div className="rounded-[1.5rem] bg-white p-4 shadow-[0_14px_35px_rgba(8,39,67,.08)]">
@@ -446,7 +445,6 @@ export default function HomePage() {
 
       <SectionShell id="contact" className="pb-20">
         <div className="rounded-[2rem] bg-white p-8 text-center shadow-[0_22px_70px_rgba(8,39,67,.10)] ring-1 ring-[#DCEBF2] md:p-12">
-          <div className="mx-auto mb-5 flex justify-center"><SpotMark /></div>
           <h2 className="text-4xl font-black md:text-6xl">Need help getting started?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg font-bold leading-relaxed text-[#526A7E]">Questions about finding parking, listing your spot, or joining the Ocean City launch?</p>
           <div className="mt-7"><ButtonLink href="mailto:hello@thelastspotapp.com">Contact Us</ButtonLink></div>
