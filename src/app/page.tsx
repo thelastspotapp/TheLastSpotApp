@@ -100,19 +100,21 @@ function SectionShell({ children, id, className = "" }: { children: React.ReactN
 
 function SpotMark({ size = "button" }: { size?: "button" | "panel" }) {
   const isPanel = size === "panel";
+  const shellSize = isPanel ? "h-12 w-12" : "h-16 w-16";
+
   return (
     <div
-      className={`grid place-items-center rounded-full bg-[#FFD33D] text-[#082743] shadow-[0_16px_40px_rgba(8,39,67,.25)] ring-4 ring-white ${
-        isPanel ? "h-12 w-12" : "h-16 w-16"
-      }`}
+      className={`relative grid ${shellSize} place-items-center overflow-hidden rounded-full bg-gradient-to-br from-[#FFE66D] via-[#FFD33D] to-[#F5B800] text-[#082743] shadow-[0_16px_40px_rgba(8,39,67,.25)] ring-4 ring-white`}
       aria-hidden="true"
     >
-      <div className={`${isPanel ? "text-[10px] leading-[0.72rem]" : "text-[12px] leading-[0.84rem]"} flex flex-col items-center font-black tracking-tight`}>
-        <span>S</span>
-        <span>P</span>
-        <span>O</span>
-        <span>T</span>
-        <span className={`${isPanel ? "mt-0 h-2 w-2" : "mt-0.5 h-2.5 w-2.5"} rounded-full bg-[#082743]`} />
+      <div className="absolute inset-[6px] rounded-full border border-white/35" />
+      <div className="absolute -left-3 -top-5 h-10 w-16 rotate-[-20deg] rounded-full bg-white/25 blur-sm" />
+      <div className={`relative flex flex-col items-center font-black tracking-[-0.06em] text-[#082743] ${isPanel ? "-mt-0.5" : "-mt-1"}`}>
+        <span className={isPanel ? "text-[21px] leading-[16px]" : "text-[29px] leading-[22px]"}>S</span>
+        <span className={isPanel ? "text-[16px] leading-[13px]" : "text-[22px] leading-[17px]"}>P</span>
+        <span className={isPanel ? "text-[12px] leading-[11px]" : "text-[17px] leading-[14px]"}>O</span>
+        <span className={isPanel ? "text-[9px] leading-[9px]" : "text-[13px] leading-[12px]"}>T</span>
+        <span className={`${isPanel ? "mt-0.5 h-2.5 w-2.5" : "mt-1 h-3.5 w-3.5"} rounded-full bg-[#082743] shadow-[inset_0_-1px_0_rgba(255,255,255,.25)]`} />
       </div>
     </div>
   );
