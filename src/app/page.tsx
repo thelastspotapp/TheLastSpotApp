@@ -64,9 +64,7 @@ const tickerItems = [
 function BrandMark({ compact = false }: { compact?: boolean }) {
   return (
     <div className="flex items-center gap-3">
-      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#FFD33D] text-3xl font-black text-[#082743] shadow-[0_10px_25px_rgba(8,39,67,.22)] ring-4 ring-white">
-        !
-      </div>
+      <SpotMark size="logo" />
       {!compact && (
         <div className="leading-none">
           <div className="text-xl font-black tracking-tight text-[#082743] sm:text-2xl">The Last Spot™</div>
@@ -98,23 +96,70 @@ function SectionShell({ children, id, className = "" }: { children: React.ReactN
 }
 
 
-function SpotMark({ size = "button" }: { size?: "button" | "panel" }) {
-  const isPanel = size === "panel";
-  const shellSize = isPanel ? "h-12 w-12" : "h-16 w-16";
+function SpotMark({ size = "button" }: { size?: "button" | "panel" | "logo" | "mini" }) {
+  const shellSize = {
+    button: "h-16 w-16",
+    panel: "h-12 w-12",
+    logo: "h-12 w-12 shrink-0 rounded-2xl",
+    mini: "h-7 w-7",
+  }[size];
+
+  const letterStyles = {
+    button: {
+      wrap: "-mt-0.5",
+      s: "text-[23px] leading-[17px]",
+      p: "text-[20px] leading-[15px]",
+      o: "text-[17px] leading-[13px]",
+      t: "text-[14px] leading-[11px]",
+      dot: "mt-1 h-2.5 w-2.5",
+      ring: "ring-4",
+      inner: "inset-[6px]",
+    },
+    panel: {
+      wrap: "-mt-0.5",
+      s: "text-[18px] leading-[14px]",
+      p: "text-[16px] leading-[12px]",
+      o: "text-[13px] leading-[10px]",
+      t: "text-[11px] leading-[9px]",
+      dot: "mt-0.5 h-2 w-2",
+      ring: "ring-4",
+      inner: "inset-[5px]",
+    },
+    logo: {
+      wrap: "-mt-0.5",
+      s: "text-[17px] leading-[13px]",
+      p: "text-[15px] leading-[11px]",
+      o: "text-[12px] leading-[9px]",
+      t: "text-[10px] leading-[8px]",
+      dot: "mt-0.5 h-2 w-2",
+      ring: "ring-4",
+      inner: "inset-[5px]",
+    },
+    mini: {
+      wrap: "-mt-[1px]",
+      s: "text-[10px] leading-[8px]",
+      p: "text-[9px] leading-[7px]",
+      o: "text-[8px] leading-[6px]",
+      t: "text-[7px] leading-[5px]",
+      dot: "mt-[2px] h-1.5 w-1.5",
+      ring: "ring-2",
+      inner: "inset-[3px]",
+    },
+  }[size];
 
   return (
     <div
-      className={`relative grid ${shellSize} place-items-center overflow-hidden rounded-full bg-gradient-to-br from-[#FFE66D] via-[#FFD33D] to-[#F5B800] text-[#082743] shadow-[0_16px_40px_rgba(8,39,67,.25)] ring-4 ring-white`}
+      className={`relative grid ${shellSize} place-items-center overflow-hidden bg-gradient-to-br from-[#FFE66D] via-[#FFD33D] to-[#F5B800] text-[#082743] shadow-[0_16px_40px_rgba(8,39,67,.25)] ${letterStyles.ring} ring-white`}
       aria-hidden="true"
     >
-      <div className="absolute inset-[6px] rounded-full border border-white/35" />
+      <div className={`absolute ${letterStyles.inner} rounded-full border border-white/35`} />
       <div className="absolute -left-3 -top-5 h-10 w-16 rotate-[-20deg] rounded-full bg-white/25 blur-sm" />
-      <div className={`relative flex flex-col items-center font-black tracking-[-0.06em] text-[#082743] ${isPanel ? "-mt-0.5" : "-mt-1"}`}>
-        <span className={isPanel ? "text-[21px] leading-[16px]" : "text-[29px] leading-[22px]"}>S</span>
-        <span className={isPanel ? "text-[16px] leading-[13px]" : "text-[22px] leading-[17px]"}>P</span>
-        <span className={isPanel ? "text-[12px] leading-[11px]" : "text-[17px] leading-[14px]"}>O</span>
-        <span className={isPanel ? "text-[9px] leading-[9px]" : "text-[13px] leading-[12px]"}>T</span>
-        <span className={`${isPanel ? "mt-0.5 h-2.5 w-2.5" : "mt-1 h-3.5 w-3.5"} rounded-full bg-[#082743] shadow-[inset_0_-1px_0_rgba(255,255,255,.25)]`} />
+      <div className={`relative flex flex-col items-center font-black tracking-[-0.04em] text-[#082743] ${letterStyles.wrap}`}>
+        <span className={letterStyles.s}>S</span>
+        <span className={letterStyles.p}>P</span>
+        <span className={letterStyles.o}>O</span>
+        <span className={letterStyles.t}>T</span>
+        <span className={`${letterStyles.dot} rounded-full bg-[#082743] shadow-[inset_0_-1px_0_rgba(255,255,255,.25)]`} />
       </div>
     </div>
   );
@@ -208,7 +253,7 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-24">
           <div>
             <div className="mb-7 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-black uppercase tracking-wide text-[#082743] shadow-[0_15px_35px_rgba(8,39,67,.10)] ring-1 ring-[#DCEBF2]">
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-[#FFD33D]">!</span>
+              <SpotMark size="mini" />
               Launching Ocean City • July 1, 2026
             </div>
             <h1 className="max-w-4xl text-6xl font-black leading-[.9] tracking-tight text-[#082743] md:text-8xl">
@@ -401,7 +446,7 @@ export default function HomePage() {
 
       <SectionShell id="contact" className="pb-20">
         <div className="rounded-[2rem] bg-white p-8 text-center shadow-[0_22px_70px_rgba(8,39,67,.10)] ring-1 ring-[#DCEBF2] md:p-12">
-          <div className="mx-auto mb-5 grid h-16 w-16 place-items-center rounded-full bg-[#FFD33D] text-4xl font-black text-[#082743]">!</div>
+          <div className="mx-auto mb-5 flex justify-center"><SpotMark /></div>
           <h2 className="text-4xl font-black md:text-6xl">Need help getting started?</h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg font-bold leading-relaxed text-[#526A7E]">Questions about finding parking, listing your spot, or joining the Ocean City launch?</p>
           <div className="mt-7"><ButtonLink href="mailto:hello@thelastspotapp.com">Contact Us</ButtonLink></div>
