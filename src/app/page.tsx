@@ -128,40 +128,40 @@ function SpotMark({
 }) {
   const config = {
     button: {
-      wrap: "h-[92px] w-[62px]",
-      body: "h-[76px] w-[52px] rounded-t-[26px] rounded-b-[16px]",
-      dot: "h-3.5 w-3.5",
-      letters: "gap-[4px] pt-[8px]",
-      s: "text-[21px] leading-[18px]",
-      p: "text-[18px] leading-[15px]",
-      o: "text-[15px] leading-[13px]",
-      t: "text-[13px] leading-[11px]",
+      wrap: "h-[104px] w-[58px]",
+      body: "h-[84px] w-[48px] rounded-t-[24px] rounded-b-[12px]",
+      dot: "h-4 w-4",
+      letters: "gap-[5px] pt-[10px]",
+      s: "text-[18px] leading-[15px]",
+      p: "text-[16px] leading-[13px]",
+      o: "text-[14px] leading-[12px]",
+      t: "text-[12px] leading-[10px]",
       ring: "ring-4",
-      inner: "inset-[6px] rounded-t-[20px] rounded-b-[12px]",
+      inner: "inset-[6px] rounded-t-[18px] rounded-b-[8px]",
     },
     panel: {
-      wrap: "h-[62px] w-[42px]",
-      body: "h-[51px] w-[34px] rounded-t-[18px] rounded-b-[10px]",
+      wrap: "h-[66px] w-[40px]",
+      body: "h-[53px] w-[32px] rounded-t-[17px] rounded-b-[9px]",
       dot: "h-2.5 w-2.5",
-      letters: "gap-[2px] pt-[5px]",
-      s: "text-[14px] leading-[12px]",
-      p: "text-[12px] leading-[10px]",
+      letters: "gap-[2px] pt-[6px]",
+      s: "text-[13px] leading-[11px]",
+      p: "text-[11px] leading-[9px]",
       o: "text-[10px] leading-[8px]",
       t: "text-[8px] leading-[7px]",
       ring: "ring-4",
-      inner: "inset-[4px] rounded-t-[14px] rounded-b-[8px]",
+      inner: "inset-[4px] rounded-t-[13px] rounded-b-[7px]",
     },
     logo: {
-      wrap: "h-[54px] w-[38px] shrink-0",
-      body: "h-[44px] w-[30px] rounded-t-[16px] rounded-b-[9px]",
+      wrap: "h-[50px] w-[35px] shrink-0",
+      body: "h-[40px] w-[28px] rounded-t-[15px] rounded-b-[9px]",
       dot: "h-2 w-2",
       letters: "gap-[1px] pt-[4px]",
-      s: "text-[12px] leading-[10px]",
-      p: "text-[10px] leading-[8px]",
-      o: "text-[9px] leading-[7px]",
+      s: "text-[11px] leading-[9px]",
+      p: "text-[9px] leading-[8px]",
+      o: "text-[8px] leading-[7px]",
       t: "text-[7px] leading-[6px]",
       ring: "ring-4",
-      inner: "inset-[4px] rounded-t-[12px] rounded-b-[7px]",
+      inner: "inset-[4px] rounded-t-[11px] rounded-b-[7px]",
     },
     mini: {
       wrap: "h-[34px] w-[24px] shrink-0",
@@ -330,9 +330,6 @@ export default function HomePage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 md:grid-cols-[1.05fr_.95fr] md:py-24">
           <div>
             <div className="mb-7 inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-sm font-black uppercase tracking-wide text-[#082743] shadow-[0_15px_35px_rgba(8,39,67,.10)] ring-1 ring-[#DCEBF2]">
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-[#FFD33D] text-base font-black text-[#082743] shadow-sm">
-                •
-              </span>
               Launching Ocean City • July 1, 2026
             </div>
             <h1 className="max-w-4xl text-6xl font-black leading-[.9] tracking-tight text-[#082743] md:text-8xl">
@@ -374,7 +371,7 @@ export default function HomePage() {
                     2-minute walk • Verified Host
                   </p>
                   <div className="mt-5 rounded-2xl bg-[#FFF4D8] p-4">
-                    <div className="flex flex-col items-center gap-3 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
+                    <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left">
                       <div>
                         <p className="text-xs font-black uppercase text-[#607486]">
                           Today
@@ -383,7 +380,7 @@ export default function HomePage() {
                       </div>
                       <button
                         onClick={() => setSelectedSpot(featuredSpots[0])}
-                        className="w-full rounded-full bg-[#FFD33D] px-5 py-3 text-sm font-black uppercase text-[#082743] sm:w-auto"
+                        className="mx-auto w-full max-w-[220px] rounded-full bg-[#FFD33D] px-5 py-3 text-sm font-black uppercase text-[#082743] sm:mx-0 sm:w-auto"
                       >
                         Reserve
                       </button>
@@ -659,7 +656,8 @@ export default function HomePage() {
       <SectionShell id="contact" className="pb-20">
         <div className="rounded-[2rem] bg-white p-8 text-center shadow-[0_22px_70px_rgba(8,39,67,.10)] ring-1 ring-[#DCEBF2] md:p-12">
           <h2 className="text-4xl font-black md:text-6xl">
-            Need help getting started?
+            Questions?
+            Spot can help.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg font-bold leading-relaxed text-[#526A7E]">
             Questions about finding parking, listing your spot, or joining the
@@ -674,12 +672,12 @@ export default function HomePage() {
       </SectionShell>
 
       <div className="group fixed bottom-5 right-5 z-40">
-        <div className="pointer-events-none absolute bottom-3 right-[4.7rem] hidden rounded-full bg-[#082743] px-4 py-2 text-sm font-black uppercase tracking-wide text-white shadow-[0_12px_30px_rgba(8,39,67,.22)] group-hover:block">
+        <div className="pointer-events-none absolute bottom-3 right-[4.2rem] hidden rounded-full bg-[#082743] px-4 py-2 text-sm font-black uppercase tracking-wide text-white shadow-[0_12px_30px_rgba(8,39,67,.22)] group-hover:block">
           Ask Spot
         </div>
         <button
           onClick={() => setHelpOpen(true)}
-          className="spot-pulse rounded-full transition hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-[#1697D6]/40"
+          className="spot-pulse transition hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-[#1697D6]/40"
           aria-label="Ask Spot, The Last Spot parking concierge"
         >
           <SpotMark />
