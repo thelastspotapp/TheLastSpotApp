@@ -128,54 +128,63 @@ function SpotMark({
 }) {
   const config = {
     button: {
-      wrap: "h-[104px] w-[58px]",
-      body: "h-[84px] w-[48px] rounded-t-[24px] rounded-b-[12px]",
-      dot: "h-4 w-4",
-      letters: "gap-[5px] pt-[10px]",
-      s: "text-[18px] leading-[15px]",
-      p: "text-[16px] leading-[13px]",
-      o: "text-[14px] leading-[12px]",
-      t: "text-[12px] leading-[10px]",
-      ring: "ring-4",
-      inner: "inset-[6px] rounded-t-[18px] rounded-b-[8px]",
+      wrap: "h-[132px] w-[78px]",
+      body: "h-[100px] w-[70px]",
+      inner: "inset-[6px]",
+      dot: "h-[26px] w-[26px] mt-[6px] ring-[5px]",
+      letters: "gap-[5px] pt-[12px]",
+      s: "text-[26px] leading-[22px]",
+      p: "text-[23px] leading-[20px]",
+      o: "text-[21px] leading-[18px]",
+      t: "text-[19px] leading-[16px]",
+      glow: "shadow-[0_18px_42px_rgba(8,39,67,.26)]",
+      shine: "h-12 w-5 left-[13px] top-[9px]",
     },
     panel: {
-      wrap: "h-[66px] w-[40px]",
-      body: "h-[53px] w-[32px] rounded-t-[17px] rounded-b-[9px]",
-      dot: "h-2.5 w-2.5",
-      letters: "gap-[2px] pt-[6px]",
-      s: "text-[13px] leading-[11px]",
-      p: "text-[11px] leading-[9px]",
-      o: "text-[10px] leading-[8px]",
-      t: "text-[8px] leading-[7px]",
-      ring: "ring-4",
-      inner: "inset-[4px] rounded-t-[13px] rounded-b-[7px]",
+      wrap: "h-[76px] w-[46px]",
+      body: "h-[58px] w-[40px]",
+      inner: "inset-[4px]",
+      dot: "h-[14px] w-[14px] mt-[4px] ring-[3px]",
+      letters: "gap-[2px] pt-[7px]",
+      s: "text-[15px] leading-[13px]",
+      p: "text-[13px] leading-[11px]",
+      o: "text-[12px] leading-[10px]",
+      t: "text-[10px] leading-[8px]",
+      glow: "shadow-[0_12px_28px_rgba(8,39,67,.20)]",
+      shine: "h-7 w-3 left-[8px] top-[6px]",
     },
     logo: {
-      wrap: "h-[50px] w-[35px] shrink-0",
-      body: "h-[40px] w-[28px] rounded-t-[15px] rounded-b-[9px]",
-      dot: "h-2 w-2",
+      wrap: "h-[50px] w-[32px] shrink-0",
+      body: "h-[39px] w-[28px]",
+      inner: "inset-[3px]",
+      dot: "h-[8px] w-[8px] mt-[3px] ring-[2px]",
       letters: "gap-[1px] pt-[4px]",
-      s: "text-[11px] leading-[9px]",
-      p: "text-[9px] leading-[8px]",
+      s: "text-[10px] leading-[8px]",
+      p: "text-[9px] leading-[7px]",
       o: "text-[8px] leading-[7px]",
       t: "text-[7px] leading-[6px]",
-      ring: "ring-4",
-      inner: "inset-[4px] rounded-t-[11px] rounded-b-[7px]",
+      glow: "shadow-[0_8px_18px_rgba(8,39,67,.18)]",
+      shine: "h-5 w-2 left-[5px] top-[4px]",
     },
     mini: {
-      wrap: "h-[34px] w-[24px] shrink-0",
-      body: "h-[28px] w-[19px] rounded-t-[10px] rounded-b-[6px]",
-      dot: "h-1.5 w-1.5",
+      wrap: "h-[34px] w-[22px] shrink-0",
+      body: "h-[27px] w-[19px]",
+      inner: "inset-[2px]",
+      dot: "h-[6px] w-[6px] mt-[2px] ring-[1px]",
       letters: "gap-[0px] pt-[3px]",
       s: "text-[7px] leading-[6px]",
       p: "text-[6px] leading-[5px]",
       o: "text-[5px] leading-[4px]",
       t: "text-[4px] leading-[4px]",
-      ring: "ring-2",
-      inner: "inset-[2px] rounded-t-[8px] rounded-b-[5px]",
+      glow: "shadow-[0_6px_12px_rgba(8,39,67,.16)]",
+      shine: "h-3 w-1.5 left-[4px] top-[3px]",
     },
   }[size];
+
+  const exclamationShape = {
+    clipPath:
+      "polygon(50% 0%, 76% 4%, 91% 18%, 86% 63%, 73% 84%, 59% 96%, 50% 100%, 41% 96%, 27% 84%, 14% 63%, 9% 18%, 24% 4%)",
+  };
 
   return (
     <div
@@ -183,21 +192,28 @@ function SpotMark({
       aria-hidden="true"
     >
       <div
-        className={`relative grid ${config.body} place-items-center overflow-hidden bg-gradient-to-br from-[#FFE66D] via-[#FFD33D] to-[#F5B800] text-[#082743] shadow-[0_14px_34px_rgba(8,39,67,.22)] ${config.ring} ring-white`}
+        className={`relative ${config.body} bg-white ${config.glow}`}
+        style={exclamationShape}
       >
-        <div className={`absolute ${config.inner} border border-white/35`} />
-        <div className="absolute -left-3 -top-5 h-10 w-16 rotate-[-20deg] rounded-full bg-white/25 blur-sm" />
         <div
-          className={`relative flex flex-col items-center justify-center font-black tracking-[-0.035em] text-[#082743] ${config.letters}`}
+          className={`absolute ${config.inner} overflow-hidden bg-gradient-to-br from-[#FFE66D] via-[#FFD33D] to-[#F5B800]`}
+          style={exclamationShape}
         >
-          <span className={config.s}>S</span>
-          <span className={config.p}>P</span>
-          <span className={config.o}>O</span>
-          <span className={config.t}>T</span>
+          <div className={`absolute ${config.shine} rotate-[22deg] rounded-full bg-white/55 blur-[1px]`} />
+          <div className="absolute -right-5 top-6 h-20 w-7 rotate-[-8deg] rounded-full bg-[#E8A900]/18 blur-sm" />
+          <div className="absolute inset-x-[18%] bottom-[7%] h-[14%] rounded-full bg-[#E8A900]/18 blur-sm" />
+          <div
+            className={`relative z-10 flex h-full flex-col items-center justify-center font-black tracking-[-0.04em] text-[#082743] ${config.letters}`}
+          >
+            <span className={config.s}>S</span>
+            <span className={config.p}>P</span>
+            <span className={config.o}>O</span>
+            <span className={config.t}>T</span>
+          </div>
         </div>
       </div>
       <span
-        className={`${config.dot} mt-[3px] rounded-full bg-[#082743] shadow-[0_4px_10px_rgba(8,39,67,.25)]`}
+        className={`${config.dot} rounded-full bg-black shadow-[0_8px_18px_rgba(8,39,67,.28)] ring-white`}
       />
     </div>
   );
@@ -257,7 +273,7 @@ export default function HomePage() {
           }
         }
         .spot-pulse {
-          animation: spotPulse 4.6s ease-in-out infinite;
+          animation: spotPulse 7.8s ease-in-out infinite;
         }
         .spot-pulse:hover {
           animation-play-state: paused;
