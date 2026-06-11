@@ -97,6 +97,27 @@ function SectionShell({ children, id, className = "" }: { children: React.ReactN
   );
 }
 
+
+function SpotMark({ size = "button" }: { size?: "button" | "panel" }) {
+  const isPanel = size === "panel";
+  return (
+    <div
+      className={`grid place-items-center rounded-full bg-[#FFD33D] text-[#082743] shadow-[0_16px_40px_rgba(8,39,67,.25)] ring-4 ring-white ${
+        isPanel ? "h-12 w-12" : "h-16 w-16"
+      }`}
+      aria-hidden="true"
+    >
+      <div className={`${isPanel ? "text-[10px] leading-[0.72rem]" : "text-[12px] leading-[0.84rem]"} flex flex-col items-center font-black tracking-tight`}>
+        <span>S</span>
+        <span>P</span>
+        <span>O</span>
+        <span>T</span>
+        <span className={`${isPanel ? "mt-0 h-2 w-2" : "mt-0.5 h-2.5 w-2.5"} rounded-full bg-[#082743]`} />
+      </div>
+    </div>
+  );
+}
+
 function TrustItem({ icon: Icon, title, copy }: { icon: typeof ShieldCheck; title: string; copy: string }) {
   return (
     <div className="rounded-[1.5rem] bg-white p-6 shadow-[0_18px_45px_rgba(8,39,67,.08)] ring-1 ring-[#DCEBF2]">
@@ -123,6 +144,19 @@ export default function HomePage() {
 
   return (
     <main id="top" className="min-h-screen overflow-x-hidden bg-[#FFF8EB] text-[#082743]">
+      <style jsx global>{`
+        @keyframes spotPulse {
+          0%, 100% { transform: scale(1); filter: drop-shadow(0 16px 28px rgba(8,39,67,.20)); }
+          50% { transform: scale(1.045); filter: drop-shadow(0 20px 34px rgba(8,39,67,.28)); }
+        }
+        .spot-pulse {
+          animation: spotPulse 4.6s ease-in-out infinite;
+        }
+        .spot-pulse:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
       <header className="sticky top-0 z-50 border-b border-[#D7E6EC] bg-[#FFF8EB]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
           <a href="#top" aria-label="The Last Spot home">
@@ -372,9 +406,18 @@ export default function HomePage() {
         </div>
       </SectionShell>
 
-      <button onClick={() => setHelpOpen(true)} className="fixed bottom-5 right-5 z-40 grid h-16 w-16 place-items-center rounded-full bg-[#FFD33D] text-4xl font-black text-[#082743] shadow-[0_16px_40px_rgba(8,39,67,.28)] ring-4 ring-white transition hover:-translate-y-1" aria-label="Open The Last Spot helper">
-        !
-      </button>
+      <div className="group fixed bottom-5 right-5 z-40">
+        <div className="pointer-events-none absolute bottom-3 right-[4.7rem] hidden rounded-full bg-[#082743] px-4 py-2 text-sm font-black uppercase tracking-wide text-white shadow-[0_12px_30px_rgba(8,39,67,.22)] group-hover:block">
+          Ask Spot
+        </div>
+        <button
+          onClick={() => setHelpOpen(true)}
+          className="spot-pulse rounded-full transition hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-[#1697D6]/40"
+          aria-label="Ask Spot, The Last Spot parking concierge"
+        >
+          <SpotMark />
+        </button>
+      </div>
 
       <footer className="bg-[#082743] px-5 py-14 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1fr_auto] md:items-end">
@@ -399,18 +442,19 @@ export default function HomePage() {
           <div className="w-full max-w-sm rounded-[2rem] bg-white p-6 shadow-[0_30px_90px_rgba(0,0,0,.28)] ring-1 ring-[#DCEBF2]">
             <div className="mb-5 flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="grid h-12 w-12 place-items-center rounded-full bg-[#FFD33D] text-3xl font-black text-[#082743]">!</div>
+                <SpotMark size="panel" />
                 <div>
-                  <h2 className="text-2xl font-black text-[#082743]">Need a hand?</h2>
-                  <p className="text-sm font-black uppercase tracking-wide text-[#1697D6]">The Last Spot helper</p>
+                  <h2 className="text-2xl font-black text-[#082743]">Hi, I'm Spot.</h2>
+                  <p className="text-sm font-black uppercase tracking-wide text-[#1697D6]">Your parking concierge</p>
                 </div>
               </div>
               <button onClick={() => setHelpOpen(false)} className="grid h-10 w-10 place-items-center rounded-full bg-[#FF8A3D] text-white" aria-label="Close helper"><X size={20} /></button>
             </div>
             <div className="grid gap-3">
-              <a onClick={() => setHelpOpen(false)} href="#find" className="rounded-2xl bg-[#FFF4D8] px-5 py-4 text-lg font-black text-[#082743]">Find parking near the shore</a>
-              <a onClick={() => setHelpOpen(false)} href="#host" className="rounded-2xl bg-[#F5FBFF] px-5 py-4 text-lg font-black text-[#082743]">List my spot</a>
-              <a onClick={() => setHelpOpen(false)} href="mailto:hello@thelastspotapp.com" className="rounded-2xl bg-[#082743] px-5 py-4 text-lg font-black text-white">Contact The Last Spot</a>
+              <a onClick={() => setHelpOpen(false)} href="#find" className="rounded-2xl bg-[#FFF4D8] px-5 py-4 text-lg font-black text-[#082743]">🚗 Find Parking</a>
+              <a onClick={() => setHelpOpen(false)} href="#host" className="rounded-2xl bg-[#F5FBFF] px-5 py-4 text-lg font-black text-[#082743]">🏡 Become a Host</a>
+              <a onClick={() => setHelpOpen(false)} href="#find" className="rounded-2xl bg-white px-5 py-4 text-lg font-black text-[#082743] ring-1 ring-[#DCEBF2]">📅 Reservation Questions</a>
+              <a onClick={() => setHelpOpen(false)} href="mailto:hello@thelastspotapp.com" className="rounded-2xl bg-[#082743] px-5 py-4 text-lg font-black text-white">📞 Contact Support</a>
             </div>
           </div>
         </div>
